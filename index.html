@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="main-menu">
+        <header class="menu-header">
+            <h1>AR NACION <span>MX</span></h1>
+            <p>Mundial 2026 • Sedes México</p>
+        </header>
+
+        <div class="menu-grid">
+            <div class="menu-card" onclick="openSection('trivia')">
+                <div class="card-icon">🏆</div>
+                <h3>Trivia</h3>
+                <p>¡Demuestra cuánto sabes!</p>
+            </div>
+
+            <div class="menu-card" onclick="openSection('scanner')">
+                <div class="card-icon">
+                    <img src="uploads/scanner.png" alt="Icono Escáner" class="icon-img">
+                </div>
+                <h3>Escáner RA</h3>
+                <p>Encuentra los logos oficiales</p>
+            </div>
+
+            <div class="menu-card" onclick="openSection('videos')">
+                <div class="card-icon">🎬</div>
+                <h3>Videos</h3>
+                <p>Momentos históricos</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="section-scanner" class="app-section" style="display: none;">
+        <button class="btn-regresar" onclick="backToMenu()">⬅ Volver</button>
+        <div id="ui-container">
+            <div class="btn-circle btn-blue"><img src="uploads/anim-icon.png"></div>
+            <div class="btn-circle btn-yellow" id="btn-stats"><img src="uploads/stats-icon.png"></div>
+            <div class="btn-circle btn-red"><img src="uploads/filter-icon.png"></div>
+        </div>
+
+        <div id="stats-panel">
+            <p id="stats-info"></p>
+            <hr style="border: 0.5px solid #333;">
+            <button id="btn-ver-partidos">Ver partidos en México</button>
+            <div id="lista-partidos"></div>
+            <button id="btn-close">Cerrar</button>
+        </div>
+
+
+        <a-scene mindar-image="imageTargetSrc: targets.mind; autoStart: false;" filterMinCF: 0.001; filterBeta: 0.01;
+            color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false"
+            device-orientation-permission-ui="enabled: false">
+
+            <a-assets>
+                <a-asset-item id="logomexico" src="assets/mexico.glb"></a-asset-item>
+                <a-asset-item id="logoJapon" src="assets/japan.glb"></a-asset-item>
+            </a-assets>
+
+            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+            <a-entity id="target-mexico" mindar-image-target="targetIndex: 0">
+                <a-gltf-model src="#logomexico" rotation="0 0 0" position="0 -0.5 0.1" scale="0.25 0.25 0.25"
+                    animation="property: position; to: 0 -0.55 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+                </a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-japon" mindar-image-target="targetIndex: 1">
+                <a-gltf-model src="#logoJapon" rotation="0 0 0" position="0 -0.5 0.1" scale="0.25 0.25 0.25"
+                    animation="property: position; to: 0 -0.55 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+                </a-gltf-model>
+            </a-entity>
+
+        </a-scene>
+
+    </div>
+
+    <div id="section-trivia" class="app-section" style="display: none;">
+        <button class="btn-regresar" onclick="backToMenuTrivia()">⬅ Volver</button>
+        <div id="contenedor-trivia">
+        </div>
+    </div>
+
+    <div id="section-videos" class="app-section" style="display: none;">
+        <button class="btn-regresar" onclick="backToMenuVideos()">⬅ Volver</button>
+
+        <div class="video-layout">
+            <div class="main-player">
+                <div class="iframe-container">
+                    <iframe id="youtube-player" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="filter-item" onclick="applyFilter('none')">
+                        <img src="uploads/FilterOriginal-icon.png">
+                        <span>Original</span>
+                    </div>
+                    <div class="filter-item" onclick="applyFilter('blur')">
+                        <img src="uploads/FilterDesenfoque-icon.png">
+                        <span>Blur</span>
+                    </div>
+                    <div class="filter-item" onclick="applyFilter('pixel')">
+                        <img src="uploads/FilterPixeleado-icon.png">
+                        <span>Pixel</span>
+                    </div>
+                    <div class="filter-item" onclick="applyFilter('saturate')">
+                        <img src="uploads/FilterSaturacion-icon.png">
+                        <span>Saturar</span>
+                    </div>
+                    <div class="filter-item" onclick="applyFilter('thermal')">
+                        <img src="uploads/FilterTermico-icon.png">
+                        <span>Térmico</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-playlist">
+                <h3>Galería Mundialista</h3>
+                <div id="lista-items-video"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script src="trivia.js"></script>
+    <script src="videos.js"></script>
+
+</body>
+
+</html>

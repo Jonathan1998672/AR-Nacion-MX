@@ -1,0 +1,56 @@
+{
+    "target-mexico": {
+        "name": "México",
+        "flag": "uploads/mexico-flag.png",
+        "info": [
+            "Confederación: CONCACAF.",
+            "Hito Histórico: Primera nación en albergar tres Copas del Mundo (1970, 1986, 2026).",
+            "Sede Inaugural: El Estadio Azteca será el escenario del primer partido del Mundial 2026.",
+            "Leyendas: Cuna de astros como Hugo Sánchez y Rafael Márquez.",
+            "Objetivo 2026: Superar la barrera de los cuartos de final jugando como local."
+        ],
+        "partidos": [
+            {
+                "fecha": "11 de Junio, 2026",
+                "equipo1": "México",
+                "equipo2": "A2 (Rival por definir)",
+                "estadio": "Estadio Banorte, CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            },
+            {
+                "fecha": "18 de Junio, 2026",
+                "equipo1": "México",
+                "equipo2": "A3 (Rival por definir)",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            },
+            {
+                "fecha": "24 de Junio, 2026",
+                "equipo1": "México",
+                "equipo2": "A4 (Rival por definir)",
+                "estadio": "Estadio Banorte, CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            }
+        ]
+    },
+    "target-japon": {
+        "name": "Japón",
+        "flag": "uploads/japon-flag.png",
+        "info": [
+            "Confederación: AFC (Asia)",
+            "Apodo: Samurai Blue",
+            "Racha Mundialista: Clasificación ininterrumpida desde Francia 1998",
+            "Actualidad: Potencia número 1 de Asia tras vencer a Alemania y España en 2022",
+            "Estilo de Juego: Destacan por su disciplina táctica y técnica individual"
+        ],
+        "partidos": [
+            {
+                "fecha": "Partidos de Fase de Grupos",
+                "equipo1": "Japón",
+                "equipo2": "Sede México (Por confirmar)",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    }
+}
