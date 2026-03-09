@@ -2,6 +2,19 @@ document.addEventListener("DOMContentLoaded", () => {
     cargarPlaylist();
 });
 
+async function cargarPrimerVideo() {
+    try {
+        const response = await fetch('videos.json');
+        const videos = await response.json();
+        if (videos.length > 0) {
+            const player = document.getElementById('youtube-player');
+            player.src = `https://www.youtube.com/embed/${videos[0].youtubeId}?autoplay=1`;
+        }
+    } catch (e) {
+        console.error("Error al cargar el video inicial:", e);
+    }
+}
+
 async function cargarPlaylist() {
     const listaContenedor = document.getElementById('lista-items-video');
     const player = document.getElementById('youtube-player');
@@ -23,10 +36,6 @@ async function cargarPlaylist() {
             };
 
             listaContenedor.appendChild(btn);
-
-            if (index === 0 && player.src === "") {
-                player.src = `https://www.youtube.com/embed/${vid.youtubeId}`;
-            }
         });
     } catch (e) {
         console.error("Error cargando la lista de videos:", e);

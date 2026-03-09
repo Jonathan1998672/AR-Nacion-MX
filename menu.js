@@ -8,7 +8,7 @@ function openSection(sectionId) {
         const sceneEl = document.querySelector('a-scene');
         const targets = document.querySelectorAll('[mindar-image-target]');
         targets.forEach(target => {
-            target.setAttribute('visible', true); 
+            target.setAttribute('visible', true);
             const model = target.querySelector('a-gltf-model');
             if (model) model.setAttribute('visible', true);
         });
@@ -26,6 +26,15 @@ function openSection(sectionId) {
     if (sectionId === 'trivia') {
         iniciarTrivia();
     }
+
+    if (sectionId === 'videos') {
+        const player = document.getElementById('youtube-player');
+        if (player && player.src === "" || player.src.includes(window.location.host)) {
+             cargarPrimerVideo(); 
+        }
+    }
+
+
 }
 
 function backToMenu() {
@@ -48,17 +57,12 @@ function backToMenu() {
 }
 
 function backToMenuVideos() {
-    // Ocultamos la sección de videos
     document.getElementById('section-videos').style.display = 'none';
-    // Mostramos el menú principal
     document.getElementById('main-menu').style.display = 'flex';
-    
-    // Opcional: Pausar el video de YouTube al salir
+
     const player = document.getElementById('youtube-player');
     if (player) {
-        const currentSrc = player.src;
-        player.src = ""; // Esto detiene el video por completo
-        player.src = currentSrc; // Lo reseteamos para la próxima vez
+        player.src = "";
     }
 }
 
