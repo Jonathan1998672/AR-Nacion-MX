@@ -524,6 +524,31 @@
 }
 
 @media (max-width: 768px) {
-    .video-layout { flex-direction: column; }
-    .video-playlist { height: 250px; flex: none; }
+    .video-layout {
+        flex-direction: column;
+        padding-top: 70px;
+        height: auto;
+        gap: 10px;
+    }
+
+    .main-player {
+        flex: none;
+        width: 100%;
+    }
+
+    .filter-bar {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .video-playlist {
+        height: 300px;
+        flex: none;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+    
+    .iframe-container {
+        padding-bottom: 56.25%; 
+    }
 }
