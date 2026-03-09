@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     let currentTargetId = null;
     let seleccionesData = {};
 
+    let isDragging = false;
+    let previousMouseX = 0;
+
     try {
         const response = await fetch('datos.json');
         seleccionesData = await response.json();
@@ -19,27 +22,63 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     Object.keys(seleccionesData).forEach(id => {
         const entity = document.getElementById(id);
-        if (entity) {
+        const modelId = id === 'target-mexico' ? 'model-mexico' : 'model-japon';
+        const modelEntity = document.getElementById(modelId);
+
+        if (entity && modelEntity) {
             entity.addEventListener("targetFound", () => {
                 currentTargetId = id;
-                
+
+                modelEntity.setAttribute('visible', true);
+
                 if (ui) {
                     ui.style.display = "flex";
-                    ui.style.visibility = "visible"; 
+                    ui.style.visibility = "visible";
                 }
-
                 if (btnRegresar) btnRegresar.style.display = 'none';
             });
 
             entity.addEventListener("targetLost", () => {
+                modelEntity.setAttribute('visible', false);
+
                 ui.style.display = "none";
                 statsPanel.style.display = "none";
                 currentTargetId = null;
-
                 if (btnRegresar) btnRegresar.style.display = 'block';
             });
         }
     });
+
+
+    document.addEventListener('mousedown', (e) => { isDragging = true; previousMouseX = e.clientX; });
+    document.addEventListener('touchstart', (e) => { isDragging = true; previousMouseX = e.touches[0].clientX; });
+
+    document.addEventListener('mouseup', () => { isDragging = false; });
+    document.addEventListener('touchend', () => { isDragging = false; });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging || !currentTargetId) return;
+        handleRotation(e.clientX);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging || !currentTargetId) return;
+        handleRotation(e.touches[0].clientX);
+    });
+
+    function handleRotation(currentX) {
+        const deltaX = currentX - previousMouseX;
+        previousMouseX = currentX;
+
+        const modelId = currentTargetId === 'target-mexico' ? 'model-mexico' : 'model-japon';
+        const model = document.getElementById(modelId);
+
+        if (model) {
+            let rotation = model.getAttribute('rotation');
+            rotation.y += deltaX * 0.5;
+            model.setAttribute('rotation', rotation);
+        }
+    }
 
     btnStats.addEventListener("click", () => {
         if (currentTargetId) {

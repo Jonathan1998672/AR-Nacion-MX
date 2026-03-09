@@ -66,19 +66,16 @@
                 <a-asset-item id="logoJapon" src="assets/japan.glb"></a-asset-item>
             </a-assets>
 
-            <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
-
-            <a-entity id="target-mexico" mindar-image-target="targetIndex: 0">
-                <a-gltf-model src="#logomexico" rotation="0 0 0" position="0 -0.5 0.1" scale="0.25 0.25 0.25"
-                    animation="property: position; to: 0 -0.55 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+            <a-camera position="0 0 0" look-controls="enabled: false">
+                <a-gltf-model id="model-mexico" src="#logomexico" visible="false" position="0 -2 -12.5" scale="1 1 1">
                 </a-gltf-model>
-            </a-entity>
 
-            <a-entity id="target-japon" mindar-image-target="targetIndex: 1">
-                <a-gltf-model src="#logoJapon" rotation="0 0 0" position="0 -0.5 0.1" scale="0.25 0.25 0.25"
-                    animation="property: position; to: 0 -0.55 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
+                <a-gltf-model id="model-japon" src="#logoJapon" visible="false" position="0 -2 -12.5" scale="1 1 1">
                 </a-gltf-model>
-            </a-entity>
+            </a-camera>
+
+            <a-entity id="target-mexico" mindar-image-target="targetIndex: 0"></a-entity>
+            <a-entity id="target-japon" mindar-image-target="targetIndex: 1"></a-entity>
 
         </a-scene>
 
