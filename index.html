@@ -41,7 +41,11 @@
     </div>
 
     <div id="section-scanner" class="app-section" style="display: none;">
-        <button class="btn-regresar" onclick="backToMenu()">⬅ Volver</button>
+        <button id="btn-regresar" class="btn-regresar" onclick="backToMenu()">⬅ Volver</button>
+        <button id="btn-reset-escaneo" class="btn-regresar"
+            style="display: none; background: #1ced26; border-color: #020a01;" onclick="reiniciarEscaneo()">Volver a
+            escanear</button>
+
         <div id="ui-container">
             <div class="btn-circle btn-blue"><img src="uploads/anim-icon.png"></div>
             <div class="btn-circle btn-yellow" id="btn-stats"><img src="uploads/stats-icon.png"></div>

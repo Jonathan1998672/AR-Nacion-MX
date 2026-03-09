@@ -11,24 +11,24 @@
         ],
         "partidos": [
             {
-                "fecha": "11 de Junio, 2026",
+                "fecha": "11 de Junio 2026, 13:00",
                 "equipo1": "México",
-                "equipo2": "A2 (Rival por definir)",
-                "estadio": "Estadio Banorte, CDMX",
+                "equipo2": "Sudáfrica",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
                 "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
             },
             {
-                "fecha": "18 de Junio, 2026",
+                "fecha": "18 de Junio 2026, 19:00",
                 "equipo1": "México",
-                "equipo2": "A3 (Rival por definir)",
+                "equipo2": "Corea del Sur",
                 "estadio": "Estadio Akron, Guadalajara",
                 "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
             },
             {
-                "fecha": "24 de Junio, 2026",
-                "equipo1": "México",
-                "equipo2": "A4 (Rival por definir)",
-                "estadio": "Estadio Banorte, CDMX",
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Europa D",
+                "equipo2": "México",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
                 "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
             }
         ]
@@ -45,9 +45,9 @@
         ],
         "partidos": [
             {
-                "fecha": "Partidos de Fase de Grupos",
-                "equipo1": "Japón",
-                "equipo2": "Sede México (Por confirmar)",
+                "fecha": "20 de Junio 2026, 20:00",
+                "equipo1": "Túnez",
+                "equipo2": "Japón",
                 "estadio": "Estadio BBVA, Monterrey",
                 "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
             }

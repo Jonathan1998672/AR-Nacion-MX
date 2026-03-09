@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnClose = document.getElementById('btn-close');
     const btnVerPartidos = document.getElementById('btn-ver-partidos');
     const listaPartidos = document.getElementById('lista-partidos');
-    const btnRegresar = document.querySelector('.btn-regresar');
+
 
     let currentTargetId = null;
     let seleccionesData = {};
@@ -28,27 +28,52 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (entity && modelEntity) {
             entity.addEventListener("targetFound", () => {
                 currentTargetId = id;
-
                 modelEntity.setAttribute('visible', true);
+
+                const sceneEl = document.querySelector('a-scene');
+                sceneEl.systems['mindar-image-system'].stop();
+
+                const scanningOverlay = document.querySelector('.mindar-ui-scanning');
+                if (scanningOverlay) {
+                    scanningOverlay.style.display = 'none';
+                }
+
+                const sectionScanner = document.getElementById('section-scanner');
+                sectionScanner.style.background = "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('uploads/estadio.png')";
+                sectionScanner.style.backgroundSize = "cover";
+
+                document.getElementById('btn-regresar').style.display = 'none';
+                document.getElementById('btn-reset-escaneo').style.display = 'block';
 
                 if (ui) {
                     ui.style.display = "flex";
                     ui.style.visibility = "visible";
                 }
-                if (btnRegresar) btnRegresar.style.display = 'none';
             });
 
-            entity.addEventListener("targetLost", () => {
-                modelEntity.setAttribute('visible', false);
-
-                ui.style.display = "none";
-                statsPanel.style.display = "none";
-                currentTargetId = null;
-                if (btnRegresar) btnRegresar.style.display = 'block';
-            });
         }
     });
 
+    window.reiniciarEscaneo = function () {
+        document.getElementById('model-mexico').setAttribute('visible', false);
+        document.getElementById('model-japon').setAttribute('visible', false);
+        document.getElementById('ui-container').style.display = 'none';
+        document.getElementById('stats-panel').style.display = 'none';
+
+        document.getElementById('btn-regresar').style.display = 'block';
+        document.getElementById('btn-reset-escaneo').style.display = 'none';
+
+        const sectionScanner = document.getElementById('section-scanner');
+        sectionScanner.style.background = "transparent";
+
+        const scanningOverlay = document.querySelector('.mindar-ui-scanning');
+        if (scanningOverlay) {
+            scanningOverlay.style.display = 'flex';
+        }
+
+        const sceneEl = document.querySelector('a-scene');
+        sceneEl.systems['mindar-image-system'].start();
+    };
 
     document.addEventListener('mousedown', (e) => { isDragging = true; previousMouseX = e.clientX; });
     document.addEventListener('touchstart', (e) => { isDragging = true; previousMouseX = e.touches[0].clientX; });
