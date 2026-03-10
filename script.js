@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnVerPartidos = document.getElementById('btn-ver-partidos');
     const listaPartidos = document.getElementById('lista-partidos');
     const btnAnim = document.getElementById('btn-toggle-anim');
+    const audioPlayer = document.getElementById('musica-pais');
 
     let currentTargetId = null;
     let seleccionesData = {};
@@ -21,8 +22,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     const modelMap = {
-        'target-mexico': { static: 'model-mexico', animated: 'model-mexico-animated' },
-        'target-japon': { static: 'model-japon', animated: 'model-japon-animated' }
+        'target-mexico': { static: 'model-mexico', animated: 'model-mexico-animated', audio: 'Musica/Mexico.mp3' },
+        'target-japon': { static: 'model-japon', animated: 'model-japon-animated', audio: 'Musica/Japon.mp3' }
     };
 
     btnAnim.addEventListener("click", () => {
@@ -37,9 +38,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (isStaticVisible) {
             staticModel.setAttribute('visible', false);
             animModel.setAttribute('visible', true);
+            if (audioPlayer) {
+                audioPlayer.src = models.audio;
+                audioPlayer.play().catch(e => console.log("Error al reproducir:", e));
+            }
         } else {
             staticModel.setAttribute('visible', true);
             animModel.setAttribute('visible', false);
+            if (audioPlayer) {
+                audioPlayer.pause();
+                audioPlayer.currentTime = 0;
+            }
         }
     });
 
@@ -104,6 +113,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const scanningOverlay = document.querySelector('.mindar-ui-scanning');
         if (scanningOverlay) {
             scanningOverlay.style.display = 'flex';
+        }
+
+        if (audioPlayer) {
+            audioPlayer.pause();
+            audioPlayer.currentTime = 0;
         }
 
         const sceneEl = document.querySelector('a-scene');
