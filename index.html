@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -47,7 +48,7 @@
             escanear</button>
 
         <div id="ui-container">
-            <div class="btn-circle btn-blue"><img src="uploads/anim-icon.png"></div>
+            <div class="btn-circle btn-blue" id="btn-toggle-anim"><img src="uploads/anim-icon.png"></div>
             <div class="btn-circle btn-yellow" id="btn-stats"><img src="uploads/stats-icon.png"></div>
             <div class="btn-circle btn-red"><img src="uploads/filter-icon.png"></div>
         </div>
@@ -67,16 +68,28 @@
 
             <a-assets>
                 <a-asset-item id="logomexico" src="assets/mexico.glb"></a-asset-item>
+                <a-asset-item id="logomexicoAnimado" src="assets/Animacionmexico.glb"></a-asset-item>
+
                 <a-asset-item id="logoJapon" src="assets/japan.glb"></a-asset-item>
+                <a-asset-item id="logoJaponAnimado" src="assets/Animacionjapan.glb"></a-asset-item>
+
             </a-assets>
 
             <a-camera position="0 0 0" look-controls="enabled: false">
-                <a-gltf-model id="model-mexico" src="#logomexico" visible="false" position="0 -2 -12.5" scale="1 1 1">
-                </a-gltf-model>
+                <!-- Mexico -->
+                <a-gltf-model id="model-mexico" src="#logomexico" visible="false" position="0 -2 -12.5"
+                    scale="1 1 1"></a-gltf-model>
+                <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" position="0 -2 -12.5"
+                    scale="1 1 1" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
 
-                <a-gltf-model id="model-japon" src="#logoJapon" visible="false" position="0 -2 -12.5" scale="1 1 1">
-                </a-gltf-model>
+                <!-- Japon -->
+                <a-gltf-model id="model-japon" src="#logoJapon" visible="false" position="0 -2 -12.5"
+                    scale="1 1 1"></a-gltf-model>
+                <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" position="0 -2 -12.5"
+                    scale="1 1 1" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+
             </a-camera>
+
 
             <a-entity id="target-mexico" mindar-image-target="targetIndex: 0"></a-entity>
             <a-entity id="target-japon" mindar-image-target="targetIndex: 1"></a-entity>

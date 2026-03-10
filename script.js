@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnClose = document.getElementById('btn-close');
     const btnVerPartidos = document.getElementById('btn-ver-partidos');
     const listaPartidos = document.getElementById('lista-partidos');
-
+    const btnAnim = document.getElementById('btn-toggle-anim');
 
     let currentTargetId = null;
     let seleccionesData = {};
@@ -20,23 +20,57 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error cargando el JSON:", error);
     }
 
+    const modelMap = {
+        'target-mexico': { static: 'model-mexico', animated: 'model-mexico-animated' },
+        'target-japon': { static: 'model-japon', animated: 'model-japon-animated' }
+    };
+
+    btnAnim.addEventListener("click", () => {
+        if (!currentTargetId || !modelMap[currentTargetId]) return;
+
+        const models = modelMap[currentTargetId];
+        const staticModel = document.getElementById(models.static);
+        const animModel = document.getElementById(models.animated);
+
+        const isStaticVisible = staticModel.getAttribute('visible');
+
+        if (isStaticVisible) {
+            staticModel.setAttribute('visible', false);
+            animModel.setAttribute('visible', true);
+        } else {
+            staticModel.setAttribute('visible', true);
+            animModel.setAttribute('visible', false);
+        }
+    });
+
     Object.keys(seleccionesData).forEach(id => {
         const entity = document.getElementById(id);
-        const modelId = id === 'target-mexico' ? 'model-mexico' : 'model-japon';
-        const modelEntity = document.getElementById(modelId);
 
-        if (entity && modelEntity) {
+        if (entity) {
             entity.addEventListener("targetFound", () => {
                 currentTargetId = id;
-                modelEntity.setAttribute('visible', true);
+
+                const todosLosModelos = [
+                    'model-mexico', 'model-mexico-animated',
+                    'model-japon', 'model-japon-animated'
+                ];
+                todosLosModelos.forEach(mId => {
+                    const mod = document.getElementById(mId);
+                    if (mod) mod.setAttribute('visible', false);
+                });
+
+                let modelIdBase;
+                if (id === 'target-mexico') modelIdBase = 'model-mexico';
+                else if (id === 'target-japon') modelIdBase = 'model-japon';
+
+                const modelEntity = document.getElementById(modelIdBase);
+                if (modelEntity) modelEntity.setAttribute('visible', true);
 
                 const sceneEl = document.querySelector('a-scene');
                 sceneEl.systems['mindar-image-system'].stop();
 
                 const scanningOverlay = document.querySelector('.mindar-ui-scanning');
-                if (scanningOverlay) {
-                    scanningOverlay.style.display = 'none';
-                }
+                if (scanningOverlay) scanningOverlay.style.display = 'none';
 
                 const sectionScanner = document.getElementById('section-scanner');
                 sectionScanner.style.background = "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('uploads/estadio.png')";
@@ -50,13 +84,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                     ui.style.visibility = "visible";
                 }
             });
-
         }
     });
 
     window.reiniciarEscaneo = function () {
         document.getElementById('model-mexico').setAttribute('visible', false);
+        document.getElementById('model-mexico-animated').setAttribute('visible', false);
         document.getElementById('model-japon').setAttribute('visible', false);
+        document.getElementById('model-japon-animated').setAttribute('visible', false);
         document.getElementById('ui-container').style.display = 'none';
         document.getElementById('stats-panel').style.display = 'none';
 
@@ -95,14 +130,26 @@ document.addEventListener("DOMContentLoaded", async () => {
         const deltaX = currentX - previousMouseX;
         previousMouseX = currentX;
 
-        const modelId = currentTargetId === 'target-mexico' ? 'model-mexico' : 'model-japon';
-        const model = document.getElementById(modelId);
+        if (!currentTargetId) return;
 
-        if (model) {
-            let rotation = model.getAttribute('rotation');
-            rotation.y += deltaX * 0.5;
-            model.setAttribute('rotation', rotation);
+        let staticId, animatedId;
+
+        if (currentTargetId === 'target-mexico') {
+            staticId = 'model-mexico'; animatedId = 'model-mexico-animated';
+        } else if (currentTargetId === 'target-japon') {
+            staticId = 'model-japon'; animatedId = 'model-japon-animated';
         }
+
+        const modelStatic = document.getElementById(staticId);
+        const modelAnim = document.getElementById(animatedId);
+
+        [modelStatic, modelAnim].forEach(model => {
+            if (model && model.getAttribute('visible') === true) {
+                let rotation = model.getAttribute('rotation');
+                rotation.y += deltaX * 0.5;
+                model.setAttribute('rotation', rotation);
+            }
+        });
     }
 
     btnStats.addEventListener("click", () => {
@@ -145,7 +192,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="partido-card">
                     <small style="color:#888">${p.fecha}</small><br>
                     <strong>${p.equipo1} vs ${p.equipo2}</strong><br>
-                    📍 <a href="${p.mapa}" target="_blank">${p.estadio}</a>
+                    <a href="${p.mapa}" target="_blank">${p.estadio}</a>
                 </div>
             `;
         });
