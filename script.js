@@ -8,11 +8,40 @@ document.addEventListener("DOMContentLoaded", async () => {
     const btnAnim = document.getElementById('btn-toggle-anim');
     const audioPlayer = document.getElementById('musica-pais');
 
+    const targets = [
+        "mexico",
+        "japon",
+        "sudafrica",
+        "surcorea",
+        "ucrania",
+        "tunez",
+        "uzbekistan",
+        "colombia",
+        "capeverde",
+        "arabiasaudita"
+    ];
+
+    targets.forEach((name) => {
+
+        const target = document.querySelector("#target-" + name);
+
+        target.addEventListener("targetFound", () => {
+            console.log("Se escaneó: " + name);
+        });
+
+    });
+
+
     let currentTargetId = null;
     let seleccionesData = {};
 
     let isDragging = false;
     let previousMouseX = 0;
+
+    const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const configDispositivo = esMovil
+        ? { position: "0 -2 -15.5", scale: "0.8 0.8 0.8" }
+        : { position: "0 -2 -12.5", scale: "1 1 1" };
 
     try {
         const response = await fetch('datos.json');
@@ -23,8 +52,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const modelMap = {
         'target-mexico': { static: 'model-mexico', animated: 'model-mexico-animated', audio: 'Musica/Mexico.mp3' },
-        'target-japon': { static: 'model-japon', animated: 'model-japon-animated', audio: 'Musica/Japon.mp3' }
+        'target-japon': { static: 'model-japon', animated: 'model-japon-animated', audio: 'Musica/Japon.mp3' },
+        'target-sudafrica': { static: 'model-sudafrica', animated: 'model-sudafrica-animated', audio: 'Musica/Sudafrica.mp3' },
+        'target-surcorea': { static: 'model-surcorea', animated: 'model-surcorea-animated', audio: 'Musica/surcorea.mp3' },
+        'target-tunez': { static: 'model-tunez', animated: 'model-tunez-animated', audio: 'Musica/tunez.mp3' }
     };
+
+    Object.values(modelMap).forEach(m => {
+        const s = document.getElementById(m.static);
+        const a = document.getElementById(m.animated);
+        if (s) { s.setAttribute('position', configDispositivo.position); s.setAttribute('scale', configDispositivo.scale); }
+        if (a) { a.setAttribute('position', configDispositivo.position); a.setAttribute('scale', configDispositivo.scale); }
+    });
 
     btnAnim.addEventListener("click", () => {
         if (!currentTargetId || !modelMap[currentTargetId]) return;
@@ -61,7 +100,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const todosLosModelos = [
                     'model-mexico', 'model-mexico-animated',
-                    'model-japon', 'model-japon-animated'
+                    'model-japon', 'model-japon-animated',
+                    'model-sudafrica', 'model-sudafrica-animated',
+                    'model-surcorea', 'model-surcorea-animated',
+                    'model-tunez', 'model-tunez-animated'
                 ];
                 todosLosModelos.forEach(mId => {
                     const mod = document.getElementById(mId);
@@ -71,6 +113,9 @@ document.addEventListener("DOMContentLoaded", async () => {
                 let modelIdBase;
                 if (id === 'target-mexico') modelIdBase = 'model-mexico';
                 else if (id === 'target-japon') modelIdBase = 'model-japon';
+                else if (id === 'target-sudafrica') modelIdBase = 'model-sudafrica';
+                else if (id === 'target-surcorea') modelIdBase = 'model-surcorea';
+                else if (id === 'target-tunez') modelIdBase = 'model-tunez';
 
                 const modelEntity = document.getElementById(modelIdBase);
                 if (modelEntity) modelEntity.setAttribute('visible', true);
@@ -101,6 +146,12 @@ document.addEventListener("DOMContentLoaded", async () => {
         document.getElementById('model-mexico-animated').setAttribute('visible', false);
         document.getElementById('model-japon').setAttribute('visible', false);
         document.getElementById('model-japon-animated').setAttribute('visible', false);
+        document.getElementById('model-sudafrica').setAttribute('visible', false);
+        document.getElementById('model-sudafrica-animated').setAttribute('visible', false);
+        document.getElementById('model-surcorea').setAttribute('visible', false);
+        document.getElementById('model-surcorea-animated').setAttribute('visible', false);
+        document.getElementById('model-tunez').setAttribute('visible', false);
+        document.getElementById('model-tunez-animated').setAttribute('visible', false);
         document.getElementById('ui-container').style.display = 'none';
         document.getElementById('stats-panel').style.display = 'none';
 
@@ -152,6 +203,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             staticId = 'model-mexico'; animatedId = 'model-mexico-animated';
         } else if (currentTargetId === 'target-japon') {
             staticId = 'model-japon'; animatedId = 'model-japon-animated';
+        } else if (currentTargetId === 'target-sudafrica') {
+            staticId = 'model-sudafrica'; animatedId = 'model-sudafrica-animated';
+        } else if (currentTargetId === 'target-surcorea') {
+            staticId = 'model-surcorea'; animatedId = 'model-surcorea-animated';
+        } else if (currentTargetId === 'target-tunez') {
+            staticId = 'model-tunez'; animatedId = 'model-tunez-animated';
         }
 
         const modelStatic = document.getElementById(staticId);

@@ -51,7 +51,7 @@
         <div id="ui-container">
             <div class="btn-circle btn-blue" id="btn-toggle-anim"><img src="uploads/anim-icon.png"></div>
             <div class="btn-circle btn-yellow" id="btn-stats"><img src="uploads/stats-icon.png"></div>
-            <div class="btn-circle btn-red"><img src="uploads/filter-icon.png"></div>
+            <!-- <div class="btn-circle btn-red"><img src="uploads/filter-icon.png"></div>-->
         </div>
 
         <div id="stats-panel">
@@ -74,26 +74,47 @@
                 <a-asset-item id="logoJapon" src="assets/japan.glb"></a-asset-item>
                 <a-asset-item id="logoJaponAnimado" src="assets/Animacionjapan.glb"></a-asset-item>
 
+                <a-asset-item id="logoSudafrica" src="assets/sudafrica.glb"></a-asset-item>
+                <a-asset-item id="logoSudafricaAnimado" src="assets/Animacionsudafrica.glb"></a-asset-item>
+
+                <a-asset-item id="logoSurcorea" src="assets/surcorea.glb"></a-asset-item>
+                <a-asset-item id="logoSurcoreaAnimado" src="assets/Animacionsurcorea.glb"></a-asset-item>
+
+                <a-asset-item id="logotunez" src="assets/tunez.glb"></a-asset-item>
+                <a-asset-item id="logotunezAnimado" src="assets/Animaciontunez.glb"></a-asset-item>
+
             </a-assets>
 
             <a-camera position="0 0 0" look-controls="enabled: false">
-                <!-- Mexico -->
-                <a-gltf-model id="model-mexico" src="#logomexico" visible="false" position="0 -2 -12.5"
-                    scale="1 1 1"></a-gltf-model>
-                <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" position="0 -2 -12.5"
-                    scale="1 1 1" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+                <a-gltf-model id="model-mexico" src="#logomexico" visible="false"></a-gltf-model>
+                <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
 
-                <!-- Japon -->
-                <a-gltf-model id="model-japon" src="#logoJapon" visible="false" position="0 -2 -12.5"
-                    scale="1 1 1"></a-gltf-model>
-                <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" position="0 -2 -12.5"
-                    scale="1 1 1" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+                <a-gltf-model id="model-japon" src="#logoJapon" visible="false"></a-gltf-model>
+                <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
 
+                <a-gltf-model id="model-sudafrica" src="#logoSudafrica" visible="false"></a-gltf-model>
+                <a-gltf-model id="model-sudafrica-animated" src="#logoSudafricaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+
+                <a-gltf-model id="model-surcorea" src="#logoSurcorea" visible="false"></a-gltf-model>
+                <a-gltf-model id="model-surcorea-animated" src="#logoSurcoreaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+
+                <a-gltf-model id="model-tunez" src="#logotunez" visible="false"></a-gltf-model>
+                <a-gltf-model id="model-tunez-animated" src="#logotunezAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+                
             </a-camera>
 
 
             <a-entity id="target-mexico" mindar-image-target="targetIndex: 0"></a-entity>
             <a-entity id="target-japon" mindar-image-target="targetIndex: 1"></a-entity>
+            <a-entity id="target-sudafrica" mindar-image-target="targetIndex: 2"></a-entity>
+            <a-entity id="target-surcorea" mindar-image-target="targetIndex: 3"></a-entity>
+            <a-entity id="target-ucrania" mindar-image-target="targetIndex: 4"></a-entity>
+            <a-entity id="target-tunez" mindar-image-target="targetIndex: 5"></a-entity>
+            <a-entity id="target-uzbekistan" mindar-image-target="targetIndex: 6"></a-entity>
+            <a-entity id="target-colombia" mindar-image-target="targetIndex: 7"></a-entity>
+            <a-entity id="target-capeverde" mindar-image-target="targetIndex: 8"></a-entity>
+            <a-entity id="target-arabiasaudita" mindar-image-target="targetIndex: 9"></a-entity>
+            
 
         </a-scene>
 

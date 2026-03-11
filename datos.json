@@ -52,5 +52,79 @@
                 "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
             }
         ]
+    },
+    "target-sudafrica": {
+        "name": "Sudafrica",
+        "flag": "uploads/sudafrica-flag.png",
+        "info": [
+            "Confederación: CAF (Confederación Africana de Fútbol)",
+            "Apodo: Bafana Bafana, que significa 'Los chicos, los chicos'",
+            "Momento histórico: Campeones de la Copa Africana de Naciones en 1996",
+            "Dato mundialista: Sudáfrica fue el primer país africano en organizar un Mundial (2010)",
+            "Curiosidad: Durante el Mundial 2010 se popularizaron las vuvuzelas en los estadios"
+        ],
+        "partidos": [
+            {
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Sudáfrica",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-surcorea": {
+        "name": "Corea del Sur",
+        "flag": "uploads/surcorea-flag.png",
+        "info": [
+            "Confederación: AFC (Confederación Asiática de Fútbol)",
+            "Apodo: Taegeuk Warriors",
+            "Momento histórico: Alcanzaron las semifinales en el Mundial de 2002",
+            "Dato mundialista: Corea del Sur organizó la Copa del Mundo 2002 junto con Japón",
+            "Estilo de juego: Destacan por su velocidad, disciplina y gran resistencia física"
+        ],
+        "partidos": [
+            {
+                "fecha": "11 de Junio 2026, 20:00",
+                "equipo1": "Corea del Sur",
+                "equipo2": "Europa D",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            },
+            {
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Sudáfrica",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-tunez": {
+        "name": "Tùnez",
+        "flag": "uploads/tunez-flag.png",
+        "info": [
+            "Confederación: CAF (Confederación Africana de Fútbol)",
+            "Apodo: Las Águilas de Cartago",
+            "Primer Mundial: Argentina 1978",
+            "Dato histórico: Fue el primer equipo africano en ganar un partido en un Mundial (1978)",
+            "Estilo de juego: Equipo disciplinado, fuerte en defensa y rápido en contraataques"
+        ],
+        "partidos": [
+            {
+                "fecha": "14 de Junio 2026, 20:00",
+                "equipo1": "Ucrania",
+                "equipo2": "Tùnez",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            },
+            {
+                "fecha": "20 de Junio 2026, 20:00",
+                "equipo1": "Túnez",
+                "equipo2": "Japon",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
     }
 }
