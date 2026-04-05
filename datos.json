@@ -1,0 +1,251 @@
+{
+    "target-mexico": {
+        "name": "México",
+        "flag": "uploads/mexico-flag.png",
+        "info": [
+            "Confederación: CONCACAF.",
+            "Hito Histórico: Primera nación en albergar tres Copas del Mundo (1970, 1986, 2026).",
+            "Sede Inaugural: El Estadio Azteca será el escenario del primer partido del Mundial 2026.",
+            "Leyendas: Cuna de astros como Hugo Sánchez y Rafael Márquez.",
+            "Objetivo 2026: Superar la barrera de los cuartos de final jugando como local."
+        ],
+        "partidos": [
+            {
+                "fecha": "11 de Junio 2026, 13:00",
+                "equipo1": "México",
+                "equipo2": "Sudáfrica",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            },
+            {
+                "fecha": "18 de Junio 2026, 19:00",
+                "equipo1": "México",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            },
+            {
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Europa D",
+                "equipo2": "México",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            }
+        ]
+    },
+    "target-japon": {
+        "name": "Japón",
+        "flag": "uploads/japon-flag.png",
+        "info": [
+            "Confederación: AFC (Asia)",
+            "Apodo: Samurai Blue",
+            "Racha Mundialista: Clasificación ininterrumpida desde Francia 1998",
+            "Actualidad: Potencia número 1 de Asia tras vencer a Alemania y España en 2022",
+            "Estilo de Juego: Destacan por su disciplina táctica y técnica individual"
+        ],
+        "partidos": [
+            {
+                "fecha": "20 de Junio 2026, 20:00",
+                "equipo1": "Túnez",
+                "equipo2": "Japón",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-sudafrica": {
+        "name": "Sudafrica",
+        "flag": "uploads/sudafrica-flag.png",
+        "info": [
+            "Confederación: CAF (Confederación Africana de Fútbol)",
+            "Apodo: Bafana Bafana, que significa 'Los chicos, los chicos'",
+            "Momento histórico: Campeones de la Copa Africana de Naciones en 1996",
+            "Dato mundialista: Sudáfrica fue el primer país africano en organizar un Mundial (2010)",
+            "Curiosidad: Durante el Mundial 2010 se popularizaron las vuvuzelas en los estadios"
+        ],
+        "partidos": [
+            {
+                "fecha": "11 de Junio 2026, 13:00",
+                "equipo1": "México",
+                "equipo2": "Sudáfrica",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            },
+            {
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Sudáfrica",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-surcorea": {
+        "name": "Corea del Sur",
+        "flag": "uploads/surcorea-flag.png",
+        "info": [
+            "Confederación: AFC (Confederación Asiática de Fútbol)",
+            "Apodo: Taegeuk Warriors",
+            "Momento histórico: Alcanzaron las semifinales en el Mundial de 2002",
+            "Dato mundialista: Corea del Sur organizó la Copa del Mundo 2002 junto con Japón",
+            "Estilo de juego: Destacan por su velocidad, disciplina y gran resistencia física"
+        ],
+        "partidos": [
+            {
+                "fecha": "11 de Junio 2026, 20:00",
+                "equipo1": "Corea del Sur",
+                "equipo2": "Europa D",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            },
+            {
+                "fecha": "18 de Junio 2026, 19:00",
+                "equipo1": "México",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            },
+            {
+                "fecha": "24 de Junio 2026, 19:00",
+                "equipo1": "Sudáfrica",
+                "equipo2": "Corea del Sur",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-ucrania": {
+        "name": "Ucrania",
+        "flag": "uploads/ucrania-flag.png",
+        "info": [
+            "Confederación: UEFA (Unión de Asociaciones Europeas de Fútbol)",
+            "Apodo: Zbirna",
+            "Momento histórico: Alcanzaron los cuartos de final en el Mundial de 2006",
+            "Dato mundialista: Ucrania debutó en la Copa del Mundo en 2006 en Alemania",
+            "Estilo de juego: Se caracterizan por su juego físico, disciplina táctica y buen contraataque"
+        ],
+        "partidos": [
+            {
+                "fecha": "14 de Junio 2026, 20:00",
+                "equipo1": "Ucrania",
+                "equipo2": "Tùnez",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-tunez": {
+        "name": "Tùnez",
+        "flag": "uploads/tunez-flag.png",
+        "info": [
+            "Confederación: CAF (Confederación Africana de Fútbol)",
+            "Apodo: Las Águilas de Cartago",
+            "Primer Mundial: Argentina 1978",
+            "Dato histórico: Fue el primer equipo africano en ganar un partido en un Mundial (1978)",
+            "Estilo de juego: Equipo disciplinado, fuerte en defensa y rápido en contraataques"
+        ],
+        "partidos": [
+            {
+                "fecha": "14 de Junio 2026, 20:00",
+                "equipo1": "Ucrania",
+                "equipo2": "Tùnez",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            },
+            {
+                "fecha": "20 de Junio 2026, 20:00",
+                "equipo1": "Túnez",
+                "equipo2": "Japon",
+                "estadio": "Estadio BBVA, Monterrey",
+                "mapa": "https://maps.app.goo.gl/jPnvz3jPwkuFfQLm9"
+            }
+        ]
+    },
+    "target-uzbekistan": {
+        "name": "Uzbekistán",
+        "flag": "uploads/uzbekistan-flag.png",
+        "info": [
+            "Confederación: AFC (Confederación Asiática de Fútbol)",
+            "Apodo: Los Lobos Blancos",
+            "Primer torneo importante: Copa Asiática 1996",
+            "Dato histórico: Ha sido una de las selecciones emergentes más fuertes de Asia Central en los últimos años",
+            "Estilo de juego: Equipo técnico, con buen manejo de balón y velocidad en ataque"
+        ],
+        "partidos": [
+            {
+                "fecha": "17 de Junio 2026, 20:00",
+                "equipo1": "Uzbekistán",
+                "equipo2": "Colombia",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            }
+        ]
+    },
+    "target-colombia": {
+        "name": "Colombia",
+        "flag": "uploads/colombia-flag.png",
+        "info": [
+            "Confederación: CONMEBOL (Confederación Sudamericana de Fútbol)",
+            "Apodo: Los Cafeteros",
+            "Primer torneo importante: Copa América 1945",
+            "Dato histórico: Ganó la Copa América en 2001 como país anfitrión",
+            "Estilo de juego: Equipo técnico y ofensivo, con gran habilidad individual y velocidad por las bandas"
+        ],
+        "partidos": [
+            {
+                "fecha": "17 de Junio 2026, 20:00",
+                "equipo1": "Uzbekistán",
+                "equipo2": "Colombia",
+                "estadio": "Estadio Banorte(Azteca), CDMX",
+                "mapa": "https://maps.app.goo.gl/H5MSkm5SfRo8TSqH8"
+            },
+            {
+                "fecha": "23 de Junio 2026, 20:00",
+                "equipo1": "Colombia",
+                "equipo2": "Repechaje 1**",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            }
+        ]
+    },
+    "target-capeverde": {
+        "name": "Cabo Verde",
+        "flag": "uploads/capeverde-flag.png",
+        "info": [
+            "Confederación: CAF (Confederación Africana de Fútbol)",
+            "Apodo: Los Tiburones Azules",
+            "Primer torneo importante: Copa Africana de Naciones 2013",
+            "Dato histórico: Alcanzó los cuartos de final en su debut en la Copa Africana de Naciones 2013",
+            "Estilo de juego: Equipo físico y disciplinado, con velocidad en el contraataque y fuerte organización defensiva"
+        ],
+        "partidos": [
+            {
+                "fecha": "26 de Junio 2026, 18:00",
+                "equipo1": "Cabo Verde",
+                "equipo2": "Arabia Saudí",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            }
+        ]
+    },
+    "target-arabiasaudita": {
+        "name": "Arabia Saudita",
+        "flag": "uploads/arabiasaudita-flag.png",
+        "info": [
+            "Confederación: AFC (Confederación Asiática de Fútbol)",
+            "Apodo: Los Halcones Verdes",
+            "Primer torneo importante: Copa Asiática 1984",
+            "Dato histórico: Ganó la Copa Asiática en 1984, 1988 y 1996",
+            "Estilo de juego: Equipo técnico con buen control del balón, velocidad por las bandas y juego ofensivo organizado"
+        ],
+        "partidos": [
+            {
+                "fecha": "26 de Junio 2026, 18:00",
+                "equipo1": "Cabo Verde",
+                "equipo2": "Arabia Saudí",
+                "estadio": "Estadio Akron, Guadalajara",
+                "mapa": "https://maps.app.goo.gl/yHPBSoHLuvm4bvWN9"
+            }
+        ]
+    }
+}
