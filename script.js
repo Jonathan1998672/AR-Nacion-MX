@@ -1,3 +1,14 @@
+let modeloActivo = null;
+let escalaActual = 0.2;
+const escalaMin = 0.1;
+const escalaMax = 0.5;
+let tocando = false;
+let lastX = 0;
+let lastY = 0;
+let distanciaInicial = 0;
+let posicionesOriginales = {};
+let escalasOriginales = {};
+
 document.addEventListener("DOMContentLoaded", async () => {
 
     const ui = document.getElementById('ui-container');
@@ -14,8 +25,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     let currentTargetId = null;
     let seleccionesData = {};
-    let isDragging = false;
-    let previousMouseX = 0;
 
     const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
@@ -32,6 +41,25 @@ document.addEventListener("DOMContentLoaded", async () => {
             y: rot.y,
             z: rot.z
         };
+    });
+
+    document.querySelectorAll('[id^="model-"]').forEach(model => {
+
+        const pos = model.getAttribute('position');
+        const scale = model.getAttribute('scale');
+
+        posicionesOriginales[model.id] = {
+            x: 0,
+            y: -0.5,
+            z: 0.6
+        };
+
+        escalasOriginales[model.id] = {
+            x: 0.2,
+            y: 0.2,
+            z: 0.2
+        };
+
     });
 
     const hideLoading = () => {
@@ -108,6 +136,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 if (rotacionesOriginales[mId]) {
                     mod.setAttribute('rotation', rotacionesOriginales[mId]);
                 }
+
+                if (posicionesOriginales[mId]) {
+                    mod.setAttribute('position', posicionesOriginales[mId]);
+                }
+
+                if (escalasOriginales[mId]) {
+                    mod.setAttribute('scale', escalasOriginales[mId]);
+                }
             }
 
         });
@@ -123,80 +159,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
 
-    Object.values(modelMap).forEach(m => {
-
-        const s = document.getElementById(m.static);
-        const a = document.getElementById(m.animated);
-
-        if (s) {
-
-            s.setAttribute('position', configDispositivo.position);
-            s.setAttribute('scale', configDispositivo.scale);
-
-        }
-
-        if (a) {
-
-            a.setAttribute('position', configDispositivo.position);
-            a.setAttribute('scale', configDispositivo.scale);
-
-        }
-
-    });
-
     const registerTargets = () => {
-
         Object.keys(modelMap).forEach(id => {
-
             const entity = document.getElementById(id);
 
             if (entity) {
-
-                entity.addEventListener("targetFound", () => {
-
+                const handleFound = () => {
+                    console.log("Escaner detecto:", id);
                     currentTargetId = id;
 
-                    const todosLosModelos = [
+                    const models = modelMap[id];
+                    const modelStatic = document.getElementById(models.static);
+                    const modelAnim = document.getElementById(models.animated);
 
-                        'model-mexico', 'model-mexico-animated',
-                        'model-japon', 'model-japon-animated',
-                        'model-sudafrica', 'model-sudafrica-animated',
-                        'model-surcorea', 'model-surcorea-animated',
-                        'model-ucrania', 'model-ucrania-animated',
-                        'model-tunez', 'model-tunez-animated',
-                        'model-uzbekistan', 'model-uzbekistan-animated',
-                        'model-colombia', 'model-colombia-animated',
-                        'model-capeverde', 'model-capeverde-animated',
-                        'model-arabiasaudita', 'model-arabiasaudita-animated'
-
-                    ];
-
-                    todosLosModelos.forEach(mId => {
-
-                        const mod = document.getElementById(mId);
-
-                        if (mod) mod.setAttribute('visible', false);
-
-                    });
-
-                    const modelIdBase = modelMap[id].static;
-                    const modelEntity = document.getElementById(modelIdBase);
-
-                    if (modelEntity) modelEntity.setAttribute('visible', true);
+                    if (modelStatic) modelStatic.setAttribute('visible', true);
+                    if (modelAnim) modelAnim.setAttribute('visible', false);
 
                     ui.style.display = "flex";
-
                     if (btnVerModelo) btnVerModelo.style.display = "block";
 
                     document.getElementById('btn-regresar').style.display = 'block';
                     document.getElementById('btn-reset-escaneo').style.display = 'none';
+                };
 
-                });
+                entity.addEventListener("targetFound", handleFound);
 
                 entity.addEventListener("targetLost", () => {
-
+                    console.log("Escaner perdio:", id);
                     const models = modelMap[id];
-
                     const staticModel = document.getElementById(models.static);
                     const animModel = document.getElementById(models.animated);
 
@@ -204,22 +194,127 @@ document.addEventListener("DOMContentLoaded", async () => {
                     if (animModel) animModel.setAttribute('visible', false);
 
                     ui.style.display = "none";
-
                     if (btnVerModelo) btnVerModelo.style.display = "none";
-
                     statsPanel.style.display = "none";
-
                     resetModelos();
-
                 });
+            }
+        });
+    };
+
+    registerTargets();
+
+    function activarControles() {
+
+        const scene = document.querySelector("a-scene");
+
+        scene.addEventListener("mousedown", e => {
+            tocando = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+        });
+
+        scene.addEventListener("mouseup", () => tocando = false);
+
+        scene.addEventListener("mousemove", e => {
+
+            if (!tocando || !modeloActivo) return;
+
+            let dx = e.clientX - lastX;
+            let dy = e.clientY - lastY;
+
+            let rot = modeloActivo.getAttribute("rotation");
+
+            rot.y += dx * 0.5;
+            rot.x += dy * 0.5;
+
+            modeloActivo.setAttribute("rotation", rot);
+
+            lastX = e.clientX;
+            lastY = e.clientY;
+
+        });
+
+        scene.addEventListener("wheel", e => {
+
+            if (!modeloActivo) return;
+
+            e.preventDefault();
+
+            escalaActual += e.deltaY * -0.0003;
+
+            escalaActual = Math.min(Math.max(escalaMin, escalaActual), escalaMax);
+
+            modeloActivo.setAttribute("scale",
+                `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+        });
+
+        scene.addEventListener("touchstart", e => {
+
+            if (e.touches.length == 1) {
+
+                tocando = true;
+                lastX = e.touches[0].clientX;
+                lastY = e.touches[0].clientY;
+
+            }
+
+            if (e.touches.length == 2) {
+
+                let dx = e.touches[0].clientX - e.touches[1].clientX;
+                let dy = e.touches[0].clientY - e.touches[1].clientY;
+
+                distanciaInicial = Math.sqrt(dx * dx + dy * dy);
 
             }
 
         });
 
-    };
+        scene.addEventListener("touchmove", e => {
 
-    sceneEl.addEventListener("renderstart", registerTargets);
+            if (!modeloActivo) return;
+
+            if (e.touches.length == 1 && tocando) {
+
+                let dx = e.touches[0].clientX - lastX;
+                let dy = e.touches[0].clientY - lastY;
+
+                let rot = modeloActivo.getAttribute("rotation");
+
+                rot.y += dx * 0.4;
+                rot.x += dy * 0.4;
+
+                modeloActivo.setAttribute("rotation", rot);
+
+                lastX = e.touches[0].clientX;
+                lastY = e.touches[0].clientY;
+
+            }
+
+            if (e.touches.length == 2) {
+
+                let dx = e.touches[0].clientX - e.touches[1].clientX;
+                let dy = e.touches[0].clientY - e.touches[1].clientY;
+
+                let distanciaActual = Math.sqrt(dx * dx + dy * dy);
+
+                let factor = distanciaActual / distanciaInicial;
+
+                escalaActual *= factor;
+
+                escalaActual = Math.min(Math.max(0.2, escalaActual), 3);
+
+                modeloActivo.setAttribute("scale",
+                    `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+                distanciaInicial = distanciaActual;
+
+            }
+
+        });
+
+    }
 
     if (btnVerModelo) {
 
@@ -250,6 +345,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             btnVerModelo.style.display = "none";
             document.getElementById('btn-regresar').style.display = 'none';
             document.getElementById('btn-reset-escaneo').style.display = 'block';
+
+            modeloActivo = model;
+            modeloActivo.pause();
+            document.getElementById("controls-3d").style.display = "flex";
+            document.getElementById("controles-mover").style.display = "flex";
+            activarControles();
 
         });
     }
@@ -346,72 +447,59 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     });
 
-    const handleRotation = (currentX) => {
-
-        if (!isDragging || !currentTargetId) return;
-
-        const deltaX = currentX - previousMouseX;
-        previousMouseX = currentX;
-
-        const models = modelMap[currentTargetId];
-
-        const mStatic = document.getElementById(models.static);
-        const mAnim = document.getElementById(models.animated);
-
-        [mStatic, mAnim].forEach(model => {
-
-            if (model && model.getAttribute('visible') === true) {
-
-                let rot = model.getAttribute('rotation');
-                rot.y += deltaX * 0.5;
-                model.setAttribute('rotation', rot);
-
-            }
-
-        });
-
-    };
-
-    document.addEventListener('mousedown', e => { isDragging = true; previousMouseX = e.clientX; });
-    document.addEventListener('touchstart', e => { isDragging = true; previousMouseX = e.touches[0].clientX; });
-
-    document.addEventListener('mouseup', () => isDragging = false);
-    document.addEventListener('touchend', () => isDragging = false);
-
-    document.addEventListener('mousemove', e => handleRotation(e.clientX));
-    document.addEventListener('touchmove', e => handleRotation(e.touches[0].clientX));
-
     const btnResetEscaneo = document.getElementById('btn-reset-escaneo');
 
     if (btnResetEscaneo) {
-
         btnResetEscaneo.addEventListener("click", () => {
 
-            // reiniciar modelos
             resetModelos();
-
-            // volver a activar el scanner
             sceneEl.systems['mindar-image-system'].start();
-
-            // mostrar UI de escaneo
             const scanningOverlay = document.querySelector('.mindar-ui-scanning');
             if (scanningOverlay) scanningOverlay.style.display = 'flex';
-
-            // quitar fondo del estadio
             const sectionScanner = document.getElementById('section-scanner');
             sectionScanner.style.background = "";
-
-            // ocultar UI
             ui.style.display = "none";
             statsPanel.style.display = "none";
-
-            // restaurar botones
             document.getElementById('btn-regresar').style.display = 'block';
             btnResetEscaneo.style.display = 'none';
             btnVerModelo.style.display = 'none';
+
+            if (modeloActivo) {
+                modeloActivo.play();
+            }
+
+            modeloActivo = null;
+            document.getElementById("controls-3d").style.display = "none";
+            document.getElementById("controles-mover").style.display = "none";
+            escalaActual = 1;
+
 
         });
 
     }
 
 });
+
+function rotarModelo(eje, valor) {
+
+    if (!modeloActivo) return;
+
+    let rot = modeloActivo.getAttribute("rotation");
+
+    rot[eje] += valor;
+
+    modeloActivo.setAttribute("rotation", rot);
+
+}
+
+function moverModelo(eje, valor) {
+    console.log("mover");
+    if (!modeloActivo) return;
+
+    let pos = modeloActivo.getAttribute("position");
+
+    pos[eje] = pos[eje] + valor;
+
+    modeloActivo.setAttribute("position", pos);
+
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +16,8 @@
 <body>
     <audio id="musica-pais" loop></audio>
 
-    <div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif; color: white;">
+    <div id="loading-screen"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: sans-serif; color: white;">
         <div class="loader"></div>
         <h2 style="margin-top: 20px; color: #28a745;">AR NACION MX</h2>
         <p id="loading-text">Cargando estadios y modelos...</p>
@@ -29,7 +31,8 @@
 
         <div class="menu-grid">
             <div class="menu-card" onclick="openSection('trivia')">
-                <div class="card-icon">&#127942;</div> <h3>Trivia</h3>
+                <div class="card-icon">&#127942;</div>
+                <h3>Trivia</h3>
                 <p>¡Demuestra cuánto sabes!</p>
             </div>
 
@@ -42,7 +45,8 @@
             </div>
 
             <div class="menu-card" onclick="openSection('videos')">
-                <div class="card-icon">&#127916;</div> <h3>Videos</h3>
+                <div class="card-icon">&#127916;</div>
+                <h3>Videos</h3>
                 <p>Momentos históricos</p>
             </div>
         </div>
@@ -53,6 +57,30 @@
 
         <button id="btn-ver-modelo" class="btn-regresar" style="display:none; top: 70px;">Ver modelo 3D</button>
         <button id="btn-reset-escaneo" class="btn-regresar" style="display:none;">Volver a escanear</button>
+
+        <div id="controls-3d" style="display:none;">
+            <button onclick="rotarModelo('x',5)">X+</button>
+            <button onclick="rotarModelo('x',-5)">X-</button>
+
+            <button onclick="rotarModelo('y',5)">Y+</button>
+            <button onclick="rotarModelo('y',-5)">Y-</button>
+
+            <button onclick="rotarModelo('z',5)">Z+</button>
+            <button onclick="rotarModelo('z',-5)">Z-</button>
+        </div>
+
+        <div id="controles-mover" style="display:none;">
+
+            <button onclick="moverModelo('y',0.1)">⬆</button>
+
+            <div>
+                <button onclick="moverModelo('x',-0.1)">⬅</button>
+                <button onclick="moverModelo('x',0.1)">➡</button>
+            </div>
+
+            <button onclick="moverModelo('y',-0.1)">⬇</button>
+
+        </div>
 
         <div id="ui-container">
             <div class="btn-circle btn-blue" id="btn-toggle-anim"><img src="uploads/anim-icon.png"></div>
@@ -95,47 +123,99 @@
             </a-assets>
 
             <a-camera position="0 0 0" look-controls="enabled: false">
-                <a-gltf-model id="model-mexico" src="#logomexico" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-                
-                <a-gltf-model id="model-japon" src="#logoJapon" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-sudafrica" src="#logoSudafrica" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-sudafrica-animated" src="#logoSudafricaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-surcorea" src="#logoSurcorea" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-surcorea-animated" src="#logoSurcoreaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-ucrania" src="#logoUcrania" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-ucrania-animated" src="#logoUcraniaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-tunez" src="#logotunez" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-tunez-animated" src="#logotunezAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-uzbekistan" src="#logouzbekistan" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-uzbekistan-animated" src="#logouzbekistanAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-colombia" src="#logocolombia" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-colombia-animated" src="#logocolombiaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-capeverde" src="#logocapeverde" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-capeverde-animated" src="#logocapeverdeAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
-
-                <a-gltf-model id="model-arabiasaudita" src="#logoarabiasaudita" visible="false"></a-gltf-model>
-                <a-gltf-model id="model-arabiasaudita-animated" src="#logoarabiasauditaAnimado" visible="false" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
+                <a-entity id="vista-fija-container" position="0 0 -12.5" visible="false"></a-entity>
             </a-camera>
 
-            <a-entity id="target-mexico" mindar-image-target="targetIndex: 0"></a-entity>
-            <a-entity id="target-japon" mindar-image-target="targetIndex: 1"></a-entity>
-            <a-entity id="target-sudafrica" mindar-image-target="targetIndex: 2"></a-entity>
-            <a-entity id="target-surcorea" mindar-image-target="targetIndex: 3"></a-entity>
-            <a-entity id="target-ucrania" mindar-image-target="targetIndex: 4"></a-entity>
-            <a-entity id="target-tunez" mindar-image-target="targetIndex: 5"></a-entity>
-            <a-entity id="target-uzbekistan" mindar-image-target="targetIndex: 6"></a-entity>
-            <a-entity id="target-colombia" mindar-image-target="targetIndex: 7"></a-entity>
-            <a-entity id="target-capeverde" mindar-image-target="targetIndex: 8"></a-entity>
-            <a-entity id="target-arabiasaudita" mindar-image-target="targetIndex: 9"></a-entity>
+            <a-entity id="target-mexico" mindar-image-target="targetIndex: 0">
+                <a-gltf-model id="model-mexico" src="#logomexico" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" scale="0.2 0.2 0.2"
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-japon" mindar-image-target="targetIndex: 1">
+                <a-gltf-model id="model-japon" src="#logoJapon" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" scale="0.2 0.2 0.2"
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-sudafrica" mindar-image-target="targetIndex: 2">
+                <a-gltf-model id="model-sudafrica" src="#logoSudafrica" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-sudafrica-animated" src="#logoSudafricaAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-surcorea" mindar-image-target="targetIndex: 3">
+                <a-gltf-model id="model-surcorea" src="#logoSurcorea" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-surcorea-animated" src="#logoSurcoreaAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-ucrania" mindar-image-target="targetIndex: 4">
+                <a-gltf-model id="model-ucrania" src="#logoUcrania" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-ucrania-animated" src="#logoUcraniaAnimado" visible="false" scale="0.2 0.2 0.2"
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-tunez" mindar-image-target="targetIndex: 5">
+                <a-gltf-model id="model-tunez" src="#logotunez" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-tunez-animated" src="#logotunezAnimado" visible="false" scale="0.2 0.2 0.2"
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-uzbekistan" mindar-image-target="targetIndex: 6">
+                <a-gltf-model id="model-uzbekistan" src="#logouzbekistan" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-uzbekistan-animated" src="#logouzbekistanAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-colombia" mindar-image-target="targetIndex: 7">
+                <a-gltf-model id="model-colombia" src="#logocolombia" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-colombia-animated" src="#logocolombiaAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-capeverde" mindar-image-target="targetIndex: 8">
+                <a-gltf-model id="model-capeverde" src="#logocapeverde" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-capeverde-animated" src="#logocapeverdeAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
+            <a-entity id="target-arabiasaudita" mindar-image-target="targetIndex: 9">
+                <a-gltf-model id="model-arabiasaudita" src="#logoarabiasaudita" visible="false" position="0 -0.5 0.6"
+                    scale="0.2 0.2 0.2"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                <a-gltf-model id="model-arabiasaudita-animated" src="#logoarabiasauditaAnimado" visible="false"
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
+                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+            </a-entity>
+
         </a-scene>
     </div>
 
@@ -149,14 +229,21 @@
         <div class="video-layout">
             <div class="main-player">
                 <div class="iframe-container">
-                    <iframe id="youtube-player" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe id="youtube-player" src="" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </div>
                 <div class="filter-bar">
-                    <div class="filter-item" onclick="applyFilter('none')"><img src="uploads/FilterOriginal-icon.png"><span>Original</span></div>
-                    <div class="filter-item" onclick="applyFilter('blur')"><img src="uploads/FilterDesenfoque-icon.png"><span>Blur</span></div>
-                    <div class="filter-item" onclick="applyFilter('pixel')"><img src="uploads/FilterPixeleado-icon.png"><span>Pixel</span></div>
-                    <div class="filter-item" onclick="applyFilter('saturate')"><img src="uploads/FilterSaturacion-icon.png"><span>Saturar</span></div>
-                    <div class="filter-item" onclick="applyFilter('thermal')"><img src="uploads/FilterTermico-icon.png"><span>Térmico</span></div>
+                    <div class="filter-item" onclick="applyFilter('none')"><img
+                            src="uploads/FilterOriginal-icon.png"><span>Original</span></div>
+                    <div class="filter-item" onclick="applyFilter('blur')"><img
+                            src="uploads/FilterDesenfoque-icon.png"><span>Blur</span></div>
+                    <div class="filter-item" onclick="applyFilter('pixel')"><img
+                            src="uploads/FilterPixeleado-icon.png"><span>Pixel</span></div>
+                    <div class="filter-item" onclick="applyFilter('saturate')"><img
+                            src="uploads/FilterSaturacion-icon.png"><span>Saturar</span></div>
+                    <div class="filter-item" onclick="applyFilter('thermal')"><img
+                            src="uploads/FilterTermico-icon.png"><span>Térmico</span></div>
                 </div>
             </div>
             <div class="video-playlist">
@@ -166,7 +253,8 @@
         </div>
     </div>
 
-    <canvas id="canvas-particulas" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; display: none;"></canvas>
+    <canvas id="canvas-particulas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; display: none;"></canvas>
 
     <script src="particles.js"></script>
     <script src="menu.js"></script>
@@ -174,4 +262,5 @@
     <script src="trivia.js"></script>
     <script src="videos.js"></script>
 </body>
+
 </html>

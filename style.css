@@ -27,11 +27,11 @@
     letter-spacing: -2px;
     margin: 0;
     text-transform: uppercase;
-    text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .menu-header h1 span {
-    color: #28a745; 
+    color: #28a745;
 }
 
 .menu-header p {
@@ -43,7 +43,7 @@
 
 .menu-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     width: 90%;
     max-width: 800px;
@@ -64,13 +64,13 @@
     transform: translateY(-10px);
     background: rgba(40, 167, 69, 0.2);
     border-color: #28a745;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
 }
 
 .card-icon {
     width: 80px;
     height: 80px;
-    margin: 0 auto 15px auto; 
+    margin: 0 auto 15px auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -79,9 +79,9 @@
 }
 
 .icon-img {
-    width: 100%;  
+    width: 100%;
     height: 100%;
-    object-fit: contain; 
+    object-fit: contain;
     filter: drop-shadow(0 0 8px rgba(40, 167, 69, 0.6));
 }
 
@@ -347,15 +347,15 @@
 }
 
 #section-trivia {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                url('uploads/estadio.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('uploads/estadio.png');
     background-size: cover;
     background-position: center;
     backdrop-filter: blur(5px);
 }
 
 .opcion-btn {
-    background: rgba(255, 255, 255, 0.1); 
+    background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
@@ -473,7 +473,7 @@
 .iframe-container {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; 
+    padding-bottom: 56.25%;
     height: 0;
     border-radius: 15px;
     border: 2px solid #28a745;
@@ -547,9 +547,9 @@
         overflow-y: auto;
         margin-bottom: 20px;
     }
-    
+
     .iframe-container {
-        padding-bottom: 56.25%; 
+        padding-bottom: 56.25%;
     }
 }
 
@@ -571,11 +571,62 @@
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #loading-screen {
     pointer-events: all;
     transition: opacity 0.5s ease;
+}
+
+#controls-3d {
+    position: absolute;
+    right: 10px;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 1000;
+}
+
+#controls-3d button {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+#controles-mover {
+    position: fixed;
+    bottom: 120px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 9999;
+}
+
+#controles-mover div {
+    display: flex;
+    gap: 10px;
+}
+
+#controles-mover button {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: none;
+    background: #111;
+    color: white;
+    z-index: 9999;
 }
