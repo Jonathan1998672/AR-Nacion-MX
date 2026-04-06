@@ -58,28 +58,28 @@
         <button id="btn-ver-modelo" class="btn-regresar" style="display:none; top: 70px;">Ver modelo 3D</button>
         <button id="btn-reset-escaneo" class="btn-regresar" style="display:none;">Volver a escanear</button>
 
-        <div id="controls-3d" style="display:none;">
-            <button onclick="rotarModelo('x',5)">X+</button>
-            <button onclick="rotarModelo('x',-5)">X-</button>
-
-            <button onclick="rotarModelo('y',5)">Y+</button>
-            <button onclick="rotarModelo('y',-5)">Y-</button>
-
-            <button onclick="rotarModelo('z',5)">Z+</button>
-            <button onclick="rotarModelo('z',-5)">Z-</button>
+        <div id="controls-3d" style="display: none;">
+            <div class="control-group">
+                <span class="label">ROTACIÓN</span>
+                <div class="grid-buttons">
+                    <button onclick="rotarModelo('x',5)">X+</button>
+                    <button onclick="rotarModelo('x',-5)">X-</button>
+                    <button onclick="rotarModelo('y',5)">Y+</button>
+                    <button onclick="rotarModelo('y',-5)">Y-</button>
+                    <button onclick="rotarModelo('z',5)">Z+</button>
+                    <button onclick="rotarModelo('z',-5)">Z-</button>
+                </div>
+            </div>
         </div>
 
-        <div id="controles-mover" style="display:none;">
-
-            <button onclick="moverModelo('y',0.1)">⬆</button>
-
-            <div>
-                <button onclick="moverModelo('x',-0.1)">⬅</button>
-                <button onclick="moverModelo('x',0.1)">➡</button>
+        <div id="controles-mover" style="display: none;">
+            <span class="label">POSICIÓN</span>
+            <button class="btn-nav" onclick="moverModelo('y',0.1)">▲</button>
+            <div class="row">
+                <button class="btn-nav" onclick="moverModelo('x',-0.1)">◀</button>
+                <button class="btn-nav" onclick="moverModelo('x',0.1)">▶</button>
             </div>
-
-            <button onclick="moverModelo('y',-0.1)">⬇</button>
-
+            <button class="btn-nav" onclick="moverModelo('y',-0.1)">▼</button>
         </div>
 
         <div id="ui-container">
@@ -131,8 +131,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-mexico-animated" src="#logomexicoAnimado" visible="false" scale="0.2 0.2 0.2"
-                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-japon" mindar-image-target="targetIndex: 1">
@@ -140,8 +139,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-japon-animated" src="#logoJaponAnimado" visible="false" scale="0.2 0.2 0.2"
-                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-sudafrica" mindar-image-target="targetIndex: 2">
@@ -149,8 +147,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-sudafrica-animated" src="#logoSudafricaAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-surcorea" mindar-image-target="targetIndex: 3">
@@ -158,8 +155,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-surcorea-animated" src="#logoSurcoreaAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-ucrania" mindar-image-target="targetIndex: 4">
@@ -167,8 +163,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-ucrania-animated" src="#logoUcraniaAnimado" visible="false" scale="0.2 0.2 0.2"
-                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-tunez" mindar-image-target="targetIndex: 5">
@@ -176,8 +171,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-tunez-animated" src="#logotunezAnimado" visible="false" scale="0.2 0.2 0.2"
-                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-uzbekistan" mindar-image-target="targetIndex: 6">
@@ -185,8 +179,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-uzbekistan-animated" src="#logouzbekistanAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-colombia" mindar-image-target="targetIndex: 7">
@@ -194,8 +187,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-colombia-animated" src="#logocolombiaAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-capeverde" mindar-image-target="targetIndex: 8">
@@ -203,8 +195,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-capeverde-animated" src="#logocapeverdeAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
             <a-entity id="target-arabiasaudita" mindar-image-target="targetIndex: 9">
@@ -212,8 +203,7 @@
                     scale="0.2 0.2 0.2"
                     animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
                 <a-gltf-model id="model-arabiasaudita-animated" src="#logoarabiasauditaAnimado" visible="false"
-                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"
-                    animation="property: position; to: 0 -0.5 1.0; dur: 1500; easing: easeInOutQuad; loop: true; dir: alternate"></a-gltf-model>
+                    scale="0.2 0.2 0.2" position="0 -0.5 0.6" animation-mixer="clip: *; loop: repeat"></a-gltf-model>
             </a-entity>
 
         </a-scene>

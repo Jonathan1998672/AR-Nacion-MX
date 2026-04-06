@@ -9,6 +9,9 @@ let distanciaInicial = 0;
 let posicionesOriginales = {};
 let escalasOriginales = {};
 
+let currentTargetId = null;
+let modelMap = {};
+
 document.addEventListener("DOMContentLoaded", async () => {
 
     const ui = document.getElementById('ui-container');
@@ -23,7 +26,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const sceneEl = document.querySelector('a-scene');
     const loadingScreen = document.getElementById('loading-screen');
 
-    let currentTargetId = null;
     let seleccionesData = {};
 
     const esMovil = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -73,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         setTimeout(hideLoading, 1500);
     });
 
-    const modelMap = {
+    modelMap = {
 
         'target-mexico': { static: 'model-mexico', animated: 'model-mexico-animated', audio: 'Musica/Mexico.mp3' },
         'target-japon': { static: 'model-japon', animated: 'model-japon-animated', audio: 'Musica/Japon.mp3' },
@@ -230,6 +232,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modeloActivo.setAttribute("rotation", rot);
 
+            if (currentTargetId) {
+                const models = modelMap[currentTargetId];
+                const staticModel = document.getElementById(models.static);
+                const animModel = document.getElementById(models.animated);
+
+                if (staticModel) staticModel.setAttribute("rotation", rot);
+                if (animModel) animModel.setAttribute("rotation", rot);
+            }
+
             lastX = e.clientX;
             lastY = e.clientY;
 
@@ -247,6 +258,18 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             modeloActivo.setAttribute("scale",
                 `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+            if (currentTargetId) {
+                const models = modelMap[currentTargetId];
+                const staticModel = document.getElementById(models.static);
+                const animModel = document.getElementById(models.animated);
+
+                if (staticModel) staticModel.setAttribute("scale",
+                    `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+                if (animModel) animModel.setAttribute("scale",
+                    `${escalaActual} ${escalaActual} ${escalaActual}`);
+            }
 
         });
 
@@ -287,6 +310,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 modeloActivo.setAttribute("rotation", rot);
 
+                if (currentTargetId) {
+                    const models = modelMap[currentTargetId];
+                    const staticModel = document.getElementById(models.static);
+                    const animModel = document.getElementById(models.animated);
+
+                    if (staticModel) staticModel.setAttribute("rotation", rot);
+                    if (animModel) animModel.setAttribute("rotation", rot);
+                }
+
                 lastX = e.touches[0].clientX;
                 lastY = e.touches[0].clientY;
 
@@ -303,10 +335,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 escalaActual *= factor;
 
-                escalaActual = Math.min(Math.max(0.2, escalaActual), 3);
+                escalaActual = Math.min(Math.max(escalaMin, escalaActual), escalaMax);
 
                 modeloActivo.setAttribute("scale",
                     `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+                if (currentTargetId) {
+                    const models = modelMap[currentTargetId];
+                    const staticModel = document.getElementById(models.static);
+                    const animModel = document.getElementById(models.animated);
+
+                    if (staticModel) staticModel.setAttribute("scale",
+                        `${escalaActual} ${escalaActual} ${escalaActual}`);
+
+                    if (animModel) animModel.setAttribute("scale",
+                        `${escalaActual} ${escalaActual} ${escalaActual}`);
+                }
 
                 distanciaInicial = distanciaActual;
 
@@ -316,44 +360,45 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     }
 
-    if (btnVerModelo) {
+    btnVerModelo.addEventListener("click", () => {
 
-        btnVerModelo.addEventListener("click", () => {
+        if (!currentTargetId) return;
 
-            if (!currentTargetId) return;
+        const models = modelMap[currentTargetId];
 
-            const models = modelMap[currentTargetId];
+        const staticModel = document.getElementById(models.static);
+        const animModel = document.getElementById(models.animated);
 
-            const staticModel = document.getElementById(models.static);
-            const animModel = document.getElementById(models.animated);
+        const model = staticModel.getAttribute('visible') ? staticModel : animModel;
 
-            const model = staticModel.getAttribute('visible') ? staticModel : animModel;
+        sceneEl.systems['mindar-image-system'].stop();
 
-            sceneEl.systems['mindar-image-system'].stop();
+        const scanningOverlay = document.querySelector('.mindar-ui-scanning');
+        if (scanningOverlay) scanningOverlay.style.display = 'none';
 
-            const scanningOverlay = document.querySelector('.mindar-ui-scanning');
-            if (scanningOverlay) scanningOverlay.style.display = 'none';
+        const sectionScanner = document.getElementById('section-scanner');
 
-            const sectionScanner = document.getElementById('section-scanner');
+        sectionScanner.style.background =
+            "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('uploads/estadio.png')";
+        sectionScanner.style.backgroundSize = "cover";
 
-            sectionScanner.style.background =
-                "linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('uploads/estadio.png')";
-            sectionScanner.style.backgroundSize = "cover";
+        model.setAttribute("visible", true);
 
-            model.setAttribute("visible", true);
+        if (staticModel && staticModel.components.animation) {
+            staticModel.components.animation.pause();
+        }
 
-            btnVerModelo.style.display = "none";
-            document.getElementById('btn-regresar').style.display = 'none';
-            document.getElementById('btn-reset-escaneo').style.display = 'block';
+        btnVerModelo.style.display = "none";
+        document.getElementById('btn-regresar').style.display = 'none';
+        document.getElementById('btn-reset-escaneo').style.display = 'block';
 
-            modeloActivo = model;
-            modeloActivo.pause();
-            document.getElementById("controls-3d").style.display = "flex";
-            document.getElementById("controles-mover").style.display = "flex";
-            activarControles();
+        modeloActivo = model;
 
-        });
-    }
+        document.getElementById("controls-3d").style.display = "flex";
+        document.getElementById("controles-mover").style.display = "flex";
+
+        activarControles();
+    });
 
     btnStats.addEventListener("click", () => {
         if (currentTargetId && seleccionesData[currentTargetId]) {
@@ -453,31 +498,35 @@ document.addEventListener("DOMContentLoaded", async () => {
         btnResetEscaneo.addEventListener("click", () => {
 
             resetModelos();
+
             sceneEl.systems['mindar-image-system'].start();
+
             const scanningOverlay = document.querySelector('.mindar-ui-scanning');
             if (scanningOverlay) scanningOverlay.style.display = 'flex';
+
             const sectionScanner = document.getElementById('section-scanner');
             sectionScanner.style.background = "";
+
             ui.style.display = "none";
             statsPanel.style.display = "none";
+
             document.getElementById('btn-regresar').style.display = 'block';
             btnResetEscaneo.style.display = 'none';
             btnVerModelo.style.display = 'none';
 
-            if (modeloActivo) {
-                modeloActivo.play();
+            if (modeloActivo && modeloActivo.components.animation) {
+                modeloActivo.components.animation.play();
             }
 
             modeloActivo = null;
+
             document.getElementById("controls-3d").style.display = "none";
             document.getElementById("controles-mover").style.display = "none";
-            escalaActual = 1;
 
+            escalaActual = 0.2;
 
         });
-
     }
-
 });
 
 function rotarModelo(eje, valor) {
@@ -485,21 +534,38 @@ function rotarModelo(eje, valor) {
     if (!modeloActivo) return;
 
     let rot = modeloActivo.getAttribute("rotation");
-
     rot[eje] += valor;
 
     modeloActivo.setAttribute("rotation", rot);
 
+    if (!currentTargetId) return;
+
+    const models = modelMap[currentTargetId];
+    const staticModel = document.getElementById(models.static);
+    const animModel = document.getElementById(models.animated);
+
+    if (staticModel) staticModel.setAttribute("rotation", rot);
+    if (animModel) animModel.setAttribute("rotation", rot);
+
 }
 
 function moverModelo(eje, valor) {
-    console.log("mover");
+
     if (!modeloActivo) return;
 
     let pos = modeloActivo.getAttribute("position");
 
-    pos[eje] = pos[eje] + valor;
+    pos[eje] += valor;
 
     modeloActivo.setAttribute("position", pos);
+
+    if (!currentTargetId) return;
+
+    const models = modelMap[currentTargetId];
+    const staticModel = document.getElementById(models.static);
+    const animModel = document.getElementById(models.animated);
+
+    if (staticModel) staticModel.setAttribute("position", pos);
+    if (animModel) animModel.setAttribute("position", pos);
 
 }
