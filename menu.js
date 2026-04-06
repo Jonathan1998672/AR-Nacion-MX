@@ -6,17 +6,20 @@ function openSection(sectionId) {
 
     if (sectionId === 'scanner') {
         const sceneEl = document.querySelector('a-scene');
+
+        const todosLosModelos = sceneEl.querySelectorAll('a-gltf-model');
+        todosLosModelos.forEach(model => {
+            model.setAttribute('visible', false);
+        });
         const targets = document.querySelectorAll('[mindar-image-target]');
         targets.forEach(target => {
-            target.setAttribute('visible', true);
-            const model = target.querySelector('a-gltf-model');
-            if (model) model.setAttribute('visible', true);
+            target.setAttribute('visible', false);
         });
+        const uiContainer = document.getElementById('ui-container');
+        if (uiContainer) uiContainer.style.display = 'none';
 
         const scanningOverlay = document.querySelector('.mindar-ui-scanning');
-        if (scanningOverlay) {
-            scanningOverlay.style.display = 'flex';
-        }
+        if (scanningOverlay) scanningOverlay.style.display = 'flex';
 
         setTimeout(() => {
             sceneEl.systems['mindar-image-system'].start();
@@ -35,11 +38,6 @@ function openSection(sectionId) {
     }
 
 
-    
-}
-
-function abrirGuia() {
-    openSection('guia');
 }
 
 function backToMenu() {
@@ -77,10 +75,6 @@ function backToMenuTrivia() {
 }
 
 function backToMenuGuia() {
-    cerrarSeccionGenerica();
-}
-
-function cerrarSeccionGenerica() {
-    document.querySelectorAll('.app-section').forEach(s => s.style.display = 'none');
+    document.getElementById('section-guia').style.display = 'none';
     document.getElementById('main-menu').style.display = 'flex';
 }

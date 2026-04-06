@@ -207,7 +207,7 @@
     display: none;
     flex-direction: column;
     padding-top: 0;
-    z-index: 2000;
+    z-index: 100000;
     width: 85%;
     max-width: 350px;
     max-height: 80vh;
@@ -460,9 +460,7 @@
 .filter-item span {
     display: block;
     width: 75px;
-    /* Limita el ancho del texto */
     white-space: normal;
-    /* Permite que el texto baje al siguiente renglón */
     word-wrap: break-word;
     margin-top: 5px;
     font-size: 0.65rem;
