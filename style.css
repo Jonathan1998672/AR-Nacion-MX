@@ -423,10 +423,17 @@
     border-radius: 50px;
     backdrop-filter: blur(10px);
     overflow-x: auto;
-    max-width: 95%;
+    white-space: nowrap;
+    width: 95%;
+    scrollbar-width: none;
+}
+
+.filter-bar::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-item {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -448,6 +455,19 @@
     font-size: 0.7rem;
     color: white;
     text-transform: uppercase;
+}
+
+.filter-item span {
+    display: block;
+    width: 75px;
+    /* Limita el ancho del texto */
+    white-space: normal;
+    /* Permite que el texto baje al siguiente renglón */
+    word-wrap: break-word;
+    margin-top: 5px;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    text-align: center;
 }
 
 .pixel-effect {
@@ -591,7 +611,7 @@
     --text-color: #ffffff;
 }
 
-#controls-3d, 
+#controls-3d,
 #controles-mover {
     position: fixed;
     z-index: 99999 !important;
@@ -613,10 +633,10 @@
 }
 
 #controles-mover {
-    bottom: 120px; 
+    bottom: 120px;
     left: 20px;
-    top: auto; 
-    gap: 4px; 
+    top: auto;
+    gap: 4px;
 }
 
 button {
@@ -666,4 +686,138 @@ button:hover {
     letter-spacing: 1px;
     margin-bottom: 5px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+
+
+#section-guia {
+    background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+        url('uploads/estadio.png');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-contenido {
+    background: transparent;
+    padding: 20px;
+    margin: 60px auto 20px auto;
+    width: 95%;
+    max-width: 500px;
+    box-sizing: border-box;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: min-content;
+}
+
+@media (min-width: 768px) {
+    .modal-contenido h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+    }
+
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 15px 5px;
+    }
+}
+
+.modal-contenido h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.guia-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px;
+    border-radius: 12px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #bbb;
+    padding: 10px 2px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.tab-btn.active {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+}
+
+.tab-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    padding: 20px;
+    border-left: 5px solid #28a745;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.paso {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.paso-numero {
+    background: #28a745;
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.paso p {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #eee;
+}
+
+.modal-contenido .menu-btn {
+    margin: 20px 0 40px 0;
+    width: 100%;
+    padding: 18px;
+    font-size: 1.1rem;
+    background: #28a745;
+    border: none;
+    font-weight: 900;
+}
+
+#section-guia .btn-regresar {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
 }

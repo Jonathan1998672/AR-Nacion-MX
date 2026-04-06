@@ -35,6 +35,11 @@ function openSection(sectionId) {
     }
 
 
+    
+}
+
+function abrirGuia() {
+    openSection('guia');
 }
 
 function backToMenu() {
@@ -71,3 +76,11 @@ function backToMenuTrivia() {
     document.getElementById('main-menu').style.display = 'flex';
 }
 
+function backToMenuGuia() {
+    cerrarSeccionGenerica();
+}
+
+function cerrarSeccionGenerica() {
+    document.querySelectorAll('.app-section').forEach(s => s.style.display = 'none');
+    document.getElementById('main-menu').style.display = 'flex';
+}

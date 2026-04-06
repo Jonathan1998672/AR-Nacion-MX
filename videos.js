@@ -45,13 +45,31 @@ async function cargarPlaylist() {
 function applyFilter(filterType) {
     const player = document.getElementById('youtube-player');
     
+    player.style.imageRendering = "auto";
+    player.style.filter = "none";
+    
     const filters = {
         'none': 'none',
-        'blur': 'blur(8px)',
-        'pixel': 'contrast(180%) blur(2px) grayscale(0.5)',
+        'pixel': 'blur(2px)', 
+        
+        'blur': 'blur(10px)',
         'saturate': 'saturate(5)',
-        'thermal': 'invert(1) hue-rotate(180deg) saturate(3)'
+        'thermal': 'invert(1) hue-rotate(180deg) saturate(3)',
+        'black-white': 'grayscale(1)',
+        'sepia': 'sepia(1)',
+        'vhs': 'sepia(0.2) hue-rotate(10deg) contrast(1.1)',
+        'security-cam': 'sepia(1) hue-rotate(70deg) saturate(3)',
+        'invert': 'invert(1)',
+        'manga': 'grayscale(1) contrast(10) brightness(1.2)', 
+        'techno': 'hue-rotate(280deg) saturate(2)',
+        'gold': 'sepia(0.5) hue-rotate(-15deg) saturate(4)'
     };
     
-    player.style.filter = filters[filterType] || 'none';
+    if (filterType === 'pixel') {
+        player.style.imageRendering = "pixelated";
+        player.style.imageRendering = "crisp-edges";
+        player.style.filter = filters['pixel'];
+    } else {
+        player.style.filter = filters[filterType] || 'none';
+    }
 }

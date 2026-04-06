@@ -49,6 +49,13 @@
                 <h3>Videos</h3>
                 <p>Momentos históricos</p>
             </div>
+
+            <div class="menu-card" onclick="abrirGuia()">
+                <div class="card-icon">💡</div>
+                <h3>Guía Rápida</h3>
+                <p>Aprende a usar la app</p>
+            </div>
+
         </div>
     </div>
 
@@ -226,14 +233,30 @@
                 <div class="filter-bar">
                     <div class="filter-item" onclick="applyFilter('none')"><img
                             src="uploads/FilterOriginal-icon.png"><span>Original</span></div>
-                    <div class="filter-item" onclick="applyFilter('blur')"><img
-                            src="uploads/FilterDesenfoque-icon.png"><span>Blur</span></div>
                     <div class="filter-item" onclick="applyFilter('pixel')"><img
-                            src="uploads/FilterPixeleado-icon.png"><span>Pixel</span></div>
+                            src="uploads/FilterPixeleado-icon.png"><span>Pixeleado</span></div>
+                    <div class="filter-item" onclick="applyFilter('blur')"><img
+                            src="uploads/FilterDesenfoque-icon.png"><span>Borroso</span></div>
                     <div class="filter-item" onclick="applyFilter('saturate')"><img
                             src="uploads/FilterSaturacion-icon.png"><span>Saturar</span></div>
                     <div class="filter-item" onclick="applyFilter('thermal')"><img
                             src="uploads/FilterTermico-icon.png"><span>Térmico</span></div>
+                    <div class="filter-item" onclick="applyFilter('black-white')"><img
+                            src="uploads/FilterGris-icon.png"><span>TV Antigua (B&N)</span></div>
+                    <div class="filter-item" onclick="applyFilter('sepia')"><img
+                            src="uploads/FilterSepia-icon.png"><span>Cámara Retro</span></div>
+                    <div class="filter-item" onclick="applyFilter('vhs')"><img
+                            src="uploads/FilterTV-icon.png"><span>Cinta VHS</span></div>
+                    <div class="filter-item" onclick="applyFilter('security-cam')"><img
+                            src="uploads/FilterNocturno-icon.png"><span>Cámara de Seguridad</span></div>
+                    <div class="filter-item" onclick="applyFilter('invert')"><img
+                            src="uploads/FilterInvertir-icon.png"><span>Negativo</span></div>
+                    <div class="filter-item" onclick="applyFilter('manga')"><img
+                            src="uploads/FilterContraste-icon.png"><span>Estilo Manga</span></div>
+                    <div class="filter-item" onclick="applyFilter('techno')"><img
+                            src="uploads/FilterTechno-icon.png"><span>Estadio Cyber</span></div>
+                    <div class="filter-item" onclick="applyFilter('gold')"><img
+                            src="uploads/FilterOro-icon.png"><span>Efecto Campeón</span></div>
                 </div>
             </div>
             <div class="video-playlist">
@@ -246,7 +269,79 @@
     <canvas id="canvas-particulas"
         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 99; display: none;"></canvas>
 
+
+    <div id="section-guia" class="app-section" style="display: none;">
+        <button class="btn-regresar" onclick="backToMenuGuia()">&#11013; Volver</button>
+
+        <div class="modal-contenido" style="margin-top: 80px;">
+            <h2>¿Cómo funciona AR NACION MX?</h2>
+
+            <div class="guia-tabs">
+                <button class="tab-btn active" onclick="verTab('guia-trivia', event)">Trivia</button>
+                <button class="tab-btn" onclick="verTab('guia-scanner', event)">Escáner</button>
+                <button class="tab-btn" onclick="verTab('guia-videos', event)">Videos</button>
+            </div>
+
+            <div id="guia-trivia" class="tab-content" style="display: block;">
+                <div class="paso">
+                    <span class="paso-numero">1</span>
+                    <p>Pon a prueba tus conocimientos sobre las sedes mundialistas en México y la historia de las
+                        selecciones participantes.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">2</span>
+                    <p>¡No te preocupes si fallas! El sistema resaltará la respuesta correcta en <strong>color
+                            verde</strong> para que sigas aprendiendo.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">3</span>
+                    <p>Al completar el desafío, verás un resumen detallado con tu puntaje total de aciertos.</p>
+                </div>
+            </div>
+
+            <div id="guia-scanner" class="tab-content" style="display: none;">
+                <div class="paso">
+                    <span class="paso-numero">1</span>
+                    <p>Apunta la cámara de tu dispositivo hacia los logos oficiales de las selecciones para activar la
+                        Realidad Augmentada.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">2</span>
+                    <p>Usa los controles para <strong>activar animaciones</strong> especiales o consultar las
+                        <strong>estadísticas</strong> exclusivas de cada país.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">3</span>
+                    <p>Presiona <strong>"Ver Modelo 3D"</strong> para visualizar el modelo
+                        sin necesidad de estar escaneando la imagen.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">4</span>
+                    <p>Interactúa con el modelo utilizando los botones de navegación para <strong>rotarlo o
+                            moverlo</strong> en el espacio.</p>
+                </div>
+            </div>
+
+            <div id="guia-videos" class="tab-content" style="display: none;">
+                <div class="paso">
+                    <span class="paso-numero">1</span>
+                    <p>Revive la magia del fútbol explorando nuestra galería de momentos históricos de la Copa del
+                        Mundo.</p>
+                </div>
+                <div class="paso">
+                    <span class="paso-numero">2</span>
+                    <p>Personaliza tu experiencia aplicando filtros temáticos como <strong>Manga</strong>, <strong>Cinta
+                            VHS</strong> o <strong>Cámara de Seguridad</strong>.</p>
+                </div>
+            </div>
+
+            <button class="menu-btn" style="margin-top:20px; width:100%;"
+                onclick="backToMenuGuia()">¡Entendido!</button>
+        </div>
+    </div>
+
     <script src="particles.js"></script>
+    <script src="guia.js"></script>
     <script src="menu.js"></script>
     <script src="script.js"></script>
     <script src="trivia.js"></script>

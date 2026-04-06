@@ -1,0 +1,182 @@
+[
+    {
+        "pregunta": "¿En qué año fue México el primer país en organizar dos Mundiales?",
+        "opciones": [
+            "1970",
+            "1986",
+            "1994"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Qué selección africana del Mundial 2010 es apodada 'Bafana Bafana'?",
+        "opciones": [
+            "Túnez",
+            "Cabo Verde",
+            "Sudáfrica"
+        ],
+        "correcta": 2
+    },
+    {
+        "pregunta": "¿Cuál de estas selecciones asiáticas llegó a semifinales en el Mundial 2002?",
+        "opciones": [
+            "Corea del Sur",
+            "Japón",
+            "Arabia Saudita"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿Qué selección sudamericana llegó a Cuartos de Final en Brasil 2014 con James Rodríguez?",
+        "opciones": [
+            "Colombia",
+            "Ecuador",
+            "Uruguay"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿Cuál es el apodo de la selección de Arabia Saudita?",
+        "opciones": [
+            "Los Halcones Verdes",
+            "Los Tigres de Asia",
+            "Las Águilas de Cartago"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿En qué Mundial debutó la selección de Ucrania como país independiente?",
+        "opciones": [
+            "Francia 1998",
+            "Alemania 2006",
+            "Sudáfrica 2010"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Cómo se conoce popularmente a la selección de Túnez?",
+        "opciones": [
+            "Leones de Teranga",
+            "Zorros del Desierto",
+            "Águilas de Cartago"
+        ],
+        "correcta": 2
+    },
+    {
+        "pregunta": "Es la selección que sorprendió venciendo a Argentina en el debut de Qatar 2022:",
+        "opciones": [
+            "Japón",
+            "Arabia Saudita",
+            "Corea del Sur"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Qué selección de Oceanía se cambió a la confederación asiática y suele enfrentar a Uzbekistán?",
+        "opciones": [
+            "Australia",
+            "Nueva Zelanda",
+            "Fiyi"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿Cuál es el apodo de la selección de Japón?",
+        "opciones": [
+            "Sol Naciente",
+            "Samuráis Blue",
+            "Dragones Rojos"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál de estos países es un archipiélago africano que busca su primer mundial?",
+        "opciones": [
+            "Uzbekistán",
+            "Cabo Verde",
+            "Túnez"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Quién es el máximo goleador histórico de la selección de Colombia?",
+        "opciones": [
+            "Radamel Falcao",
+            "Carlos Valderrama",
+            "James Rodríguez"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿Cuál de estas sedes mexicanas tiene el estadio más antiguo para 2026?",
+        "opciones": [
+            "Monterrey",
+            "Guadalajara",
+            "Ciudad de México"
+        ],
+        "correcta": 2
+    },
+    {
+        "pregunta": "¿Cuántas selecciones participarán en total en el Mundial 2026?",
+        "opciones": [
+            "32",
+            "48",
+            "64"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Qué selección eliminó a Alemania en la fase de grupos de Rusia 2018?",
+        "opciones": [
+            "Corea del Sur",
+            "Japón",
+            "México"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿En qué continente juega la selección de Uzbekistán?",
+        "opciones": [
+            "Europa",
+            "Asia",
+            "África"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál fue el primer Mundial que organizó Japón (junto a Corea)?",
+        "opciones": [
+            "1998",
+            "2002",
+            "2006"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "Andriy Shevchenko es la máxima leyenda de esta selección:",
+        "opciones": [
+            "Uzbekistán",
+            "Ucrania",
+            "Cabo Verde"
+        ],
+        "correcta": 1
+    },
+    {
+        "pregunta": "¿Cuál de estas selecciones ha ganado más Copas Asiáticas?",
+        "opciones": [
+            "Japón",
+            "Uzbekistán",
+            "Arabia Saudita"
+        ],
+        "correcta": 0
+    },
+    {
+        "pregunta": "¿Cuál es el estadio con mayor capacidad de México para 2026?",
+        "opciones": [
+            "Estadio BBVA",
+            "Estadio Azteca",
+            "Estadio Akron"
+        ],
+        "correcta": 1
+    }
+]

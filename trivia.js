@@ -1,83 +1,94 @@
-const triviaData = [
-    {
-        pregunta: "¿En qué estadio de México se jugará el partido inaugural del Mundial 2026?",
-        opciones: ["Estadio BBVA", "Estadio Azteca", "Estadio Akron"],
-        correcta: 1 
-    },
-    {
-        pregunta: "¿Cuántas sedes tendrá México para el Mundial 2026?",
-        opciones: ["2 sedes", "4 sedes", "3 sedes"],
-        correcta: 2 
-    },
-    {
-        pregunta: "¿Qué selección asiática ya has escaneado en esta app y participará en 2026?",
-        opciones: ["Corea del Sur", "Japón", "Arabia Saudita"],
-        correcta: 1 
-    },
-    {
-        pregunta: "¿Cuántas veces habrá sido México anfitrión de una Copa del Mundo tras el 2026?",
-        opciones: ["2 veces", "3 veces", "1 vez"],
-        correcta: 1 
-    }
-];
-
+let preguntasTotales = [];
+let preguntasSesion = [];
 let indicePregunta = 0;
 let puntaje = 0;
+let cantidadParaEstaSesion = 0;
 
-function iniciarTrivia() {
-    indicePregunta = 0;
-    puntaje = 0;
-    mostrarPregunta();
+async function iniciarTrivia() {
+    try {
+        const respuesta = await fetch('preguntas.json');
+        preguntasTotales = await respuesta.json();
+
+        cantidadParaEstaSesion = Math.floor(Math.random() * (18 - 12 + 1)) + 12;
+
+        preguntasSesion = preguntasTotales
+            .sort(() => Math.random() - 0.5)
+            .slice(0, cantidadParaEstaSesion);
+
+        indicePregunta = 0;
+        puntaje = 0;
+        mostrarPregunta();
+    } catch (error) {
+        console.error("Error cargando la trivia:", error);
+        document.getElementById('contenedor-trivia').innerHTML = "<p>Error al cargar las preguntas.</p>";
+    }
 }
 
 function mostrarPregunta() {
     const contenedor = document.getElementById('contenedor-trivia');
-    const preguntaActual = triviaData[indicePregunta];
+    const data = preguntasSesion[indicePregunta];
+
+    const opcionesMezcladas = data.opciones
+        .map((texto, i) => ({ texto, esCorrecta: i === data.correcta }))
+        .sort(() => Math.random() - 0.5);
 
     contenedor.innerHTML = `
         <div class="trivia-card">
-            <p class="trivia-progreso">Pregunta ${indicePregunta + 1} de ${triviaData.length}</p>
-            <h3 class="trivia-pregunta">${preguntaActual.pregunta}</h3>
+            <p class="trivia-progreso">Pregunta ${indicePregunta + 1} de ${cantidadParaEstaSesion}</p>
+            <h3 class="trivia-pregunta">${data.pregunta}</h3>
             <div class="opciones-grid">
-                ${preguntaActual.opciones.map((opcion, i) => `
-                    <button class="opcion-btn" onclick="verificarRespuesta(${i})">${opcion}</button>
+                ${opcionesMezcladas.map((op) => `
+                    <button class="opcion-btn" 
+                            data-correcta="${op.esCorrecta}" 
+                            onclick="verificarRespuesta(this)">${op.texto}</button>
                 `).join('')}
             </div>
         </div>
     `;
 }
 
-function verificarRespuesta(seleccionado) {
-    const preguntaActual = triviaData[indicePregunta];
+function verificarRespuesta(botonSeleccionado) {
     const botones = document.querySelectorAll('.opcion-btn');
-    
+    const esCorrecta = botonSeleccionado.getAttribute('data-correcta') === "true";
+
     botones.forEach(btn => btn.style.pointerEvents = 'none');
 
-    if (seleccionado === preguntaActual.correcta) {
+    if (esCorrecta) {
         puntaje++;
-        botones[seleccionado].classList.add('correct');
+        botonSeleccionado.classList.add('correct');
     } else {
-        botones[seleccionado].classList.add('incorrect');
-        botones[preguntaActual.correcta].classList.add('correct');
+        botonSeleccionado.classList.add('incorrect');
+        botones.forEach(btn => {
+            if (btn.getAttribute('data-correcta') === "true") {
+                btn.classList.add('correct');
+            }
+        });
     }
 
     setTimeout(() => {
         indicePregunta++;
-        if (indicePregunta < triviaData.length) {
+        if (indicePregunta < preguntasSesion.length) {
             mostrarPregunta();
         } else {
             finalizarTrivia();
         }
-    }, 1500); 
+    }, 1800);
 }
 
 function finalizarTrivia() {
     const contenedor = document.getElementById('contenedor-trivia');
+    let mensaje = "";
+    const porcentaje = (puntaje / cantidadParaEstaSesion) * 100;
+
+    if (porcentaje === 100) mensaje = "¡Nivel Dios Mundialista!";
+    else if (porcentaje >= 70) mensaje = "¡Gran conocimiento!";
+    else mensaje = "¡Sigue practicando!";
+
     contenedor.innerHTML = `
         <div class="trivia-card resultado">
-            <h2>¡Trivia Finalizada!</h2>
-            <p>Tu puntaje: <strong>${puntaje} / ${triviaData.length}</strong></p>
-            <button class="menu-btn" onclick="iniciarTrivia()">Reintentar</button>
+            <h2>${mensaje}</h2>
+            <p>Lograste <strong>${puntaje}</strong> aciertos de <strong>${cantidadParaEstaSesion}</strong> preguntas.</p>
+            <button class="menu-btn" onclick="iniciarTrivia()">Jugar de nuevo</button>
         </div>
     `;
 }
