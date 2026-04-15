@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v7.0.0/dist/aframe-extras.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=1.0.3">
 </head>
 
 <body>
@@ -283,39 +283,43 @@
             </div>
 
             <div id="guia-trivia" class="tab-content" style="display: block;">
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/Trivia1.png', 'imagen')"
+                    style="cursor: pointer;">
                     <span class="paso-numero">1</span>
                     <p>Pon a prueba tus conocimientos sobre las sedes mundialistas en México y la historia de las
                         selecciones participantes.</p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/Trivia2.png', 'imagen')"
+                    style="cursor: pointer;">
                     <span class="paso-numero">2</span>
                     <p>¡No te preocupes si fallas! El sistema resaltará la respuesta correcta en <strong>color
                             verde</strong> para que sigas aprendiendo.</p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/Trivia3.png', 'imagen')"
+                    style="cursor: pointer;">
                     <span class="paso-numero">3</span>
                     <p>Al completar el desafío, verás un resumen detallado con tu puntaje total de aciertos.</p>
                 </div>
             </div>
 
             <div id="guia-scanner" class="tab-content" style="display: none;">
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/scanner1.mp4', 'video')" style="cursor: pointer;">
                     <span class="paso-numero">1</span>
                     <p>Apunta la cámara de tu dispositivo hacia los logos oficiales de las selecciones para activar la
                         Realidad Augmentada.</p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/scanner2.mp4', 'video')" style="cursor: pointer;">
                     <span class="paso-numero">2</span>
                     <p>Usa los controles para <strong>activar animaciones</strong> especiales o consultar las
-                        <strong>estadísticas</strong> exclusivas de cada país.</p>
+                        <strong>estadísticas</strong> exclusivas de cada país.
+                    </p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/scanner3.mp4', 'video')" style="cursor: pointer;">
                     <span class="paso-numero">3</span>
                     <p>Presiona <strong>"Ver Modelo 3D"</strong> para visualizar el modelo
                         sin necesidad de estar escaneando la imagen.</p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/scanner4.mp4', 'video')" style="cursor: pointer;">
                     <span class="paso-numero">4</span>
                     <p>Interactúa con el modelo utilizando los botones de navegación para <strong>rotarlo o
                             moverlo</strong> en el espacio.</p>
@@ -323,12 +327,14 @@
             </div>
 
             <div id="guia-videos" class="tab-content" style="display: none;">
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/videos1.png', 'imagen')"
+                    style="cursor: pointer;">
                     <span class="paso-numero">1</span>
                     <p>Revive la magia del fútbol explorando nuestra galería de momentos históricos de la Copa del
                         Mundo.</p>
                 </div>
-                <div class="paso">
+                <div class="paso" onclick="mostrarRecursoGuia('uploads-guia/videos2.png', 'imagen')"
+                    style="cursor: pointer;">
                     <span class="paso-numero">2</span>
                     <p>Personaliza tu experiencia aplicando filtros temáticos como <strong>Manga</strong>, <strong>Cinta
                             VHS</strong> o <strong>Cámara de Seguridad</strong>.</p>
@@ -340,11 +346,24 @@
         </div>
     </div>
 
+    <div id="guia-preview-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; flex-direction: column; align-items: center; justify-content: center; padding: 20px; box-sizing: border-box;">
+
+        <button onclick="cerrarPreviewGuia()"
+            style="position: absolute; top: 20px; right: 20px; background: #dc3545; border: none; padding: 10px 20px; border-radius: 5px; color: white; cursor: pointer; z-index: 10001;">
+            Cerrar X
+        </button>
+
+        <div id="guia-media-container"
+            style="max-width: 90%; max-height: 80%; display: flex; align-items: center; justify-content: center;">
+        </div>
+    </div>
+
     <script src="particles.js"></script>
-    <script src="guia.js"></script>
-    <script src="menu.js"></script>
+    <script src="guia.js?v=1.0.1"></script>
+    <script src="menu.js?v=1.0.5"></script>
     <script src="script.js"></script>
-    <script src="trivia.js"></script>
+    <script src="trivia.js?v=1.0.2"></script>
     <script src="videos.js"></script>
 </body>
 

@@ -782,6 +782,9 @@ button:hover {
     align-items: flex-start;
     gap: 15px;
     margin-bottom: 20px;
+    transition: background 0.3s ease;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .paso-numero {
@@ -795,6 +798,10 @@ button:hover {
     justify-content: center;
     font-weight: bold;
     flex-shrink: 0;
+}
+.paso:hover {
+    background: rgba(40, 167, 69, 0.1);
+    transform: translateX(5px);
 }
 
 .paso p {

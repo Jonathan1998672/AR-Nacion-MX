@@ -51,6 +51,18 @@ function backToMenu() {
             if (model) model.setAttribute('visible', false);
         });
     }
+    const audioPlayer = document.getElementById('musica-pais');
+    if (audioPlayer) {
+        audioPlayer.pause();
+        audioPlayer.currentTime = 0;
+    }
+
+    if (typeof ParticleSystem !== 'undefined' && ParticleSystem.deactivate) {
+        ParticleSystem.deactivate();
+    }
+
+    const btnVerModelo = document.getElementById('btn-ver-modelo');
+    if (btnVerModelo) btnVerModelo.style.display = 'none';
 
     const overlay = document.querySelector('.mindar-ui-scanning');
     if (overlay) overlay.style.display = 'none';
